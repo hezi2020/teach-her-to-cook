@@ -1,0 +1,111 @@
+<style>
+  .map-wrap { max-width: 860px; }
+  .map-row { display:grid; grid-template-columns: 1fr 40px 1fr; align-items:stretch; gap:8px; margin-bottom:10px; }
+  .map-side { border-radius:12px; padding:10px 12px; border:1px solid var(--border); background:var(--bg-secondary); }
+  .map-side.src { background:#F2F2F4; }
+  .map-side.dst { background:#F1F7F3; border-color:#D3E4DA; }
+  .map-side .k { font-size:.68rem; letter-spacing:.12em; color:#8B8B90; margin-bottom:3px; }
+  .map-side.dst .k { color:#7E9A8B; }
+  .map-side .t { font-size:.92rem; font-weight:600; margin-bottom:3px; }
+  .map-side.dst .t { color:#3E5749; }
+  .map-side .d { font-size:.78rem; color:var(--text-secondary); line-height:1.45; }
+  .map-side.dst .d { color:#5C7A6B; }
+  .arrow { display:flex; align-items:center; justify-content:center; color:#B3C4B9; font-size:1.1rem; }
+  .head-row { display:flex; gap:8px; margin-bottom:10px; font-size:.72rem; color:var(--text-secondary); }
+  .head-row div:first-child { width:calc(50% - 20px); text-align:center; letter-spacing:.1em; }
+  .head-row div:last-child { flex:1; text-align:center; letter-spacing:.1em; color:#7E9A8B; }
+  @media (max-width:640px){ .map-row{ grid-template-columns:1fr; } .arrow{ transform:rotate(90deg); height:22px; } .head-row{display:none;} }
+</style>
+
+<h2>《教妹妹开车》里值得偷的 6 个机制</h2>
+<p class="subtitle">核心不是驾驶，而是「你只能出嘴，她握着方向盘」这种无能为力又必须开口的关系。做饭可以原样移植，只是角色换位。</p>
+
+<div class="map-wrap">
+  <div class="head-row"><div>《教妹妹开车》</div><div>搬到做饭助手</div></div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">PERSPECTIVE</div>
+      <div class="t">副驾驶视角</div>
+      <div class="d">你被固定在副驾驶，握方向盘的是她，你只能靠说话影响结果。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">PERSPECTIVE</div>
+      <div class="t">灶台边的她</div>
+      <div class="d">她碰不到你的锅，只能看着你、提醒你。她的手是空的 —— 这个设定让“指导”变得合理，也让人心软。</div>
+    </div>
+  </div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">INPUT</div>
+      <div class="t">实时语音对话</div>
+      <div class="d">直接喊话，妹妹实时听取并反应；网速和口音都会影响她听不听得懂。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">INPUT</div>
+      <div class="t">语音 + 文字双通道</div>
+      <div class="d">原型先用文字与快捷短语；语音按钮预留位置，等接上 ASR 再开。她“听不懂”时的追问也是演出的一部分。</div>
+    </div>
+  </div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">FAILURE</div>
+      <div class="t">妹妹会犯错，你得预判</div>
+      <div class="d">她手忙脚乱，你必须在她出错前喊停。慢半拍就撞了。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">FAILURE</div>
+      <div class="t">她盯着你的火候</div>
+      <div class="d">计时超时、步骤停留过久、顺序做错，她会先出声：“火大了，关小一点。”原型里用计时器与步骤状态就能模拟。</div>
+    </div>
+  </div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">PROGRESSION</div>
+      <div class="t">练习场 → 真实道路</div>
+      <div class="d">从空场地开到城市、高速，需要教的东西越来越多。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">PROGRESSION</div>
+      <div class="t">新手菜 → 家常 → 硬菜</div>
+      <div class="d">煎蛋、番茄蛋汤起步；进阶到炒菜、红烧；她教得越来越细，也更敢吐槽你。</div>
+    </div>
+  </div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">EVENT</div>
+      <div class="t">突发事故</div>
+      <div class="d">行人、爆胎、急刹 —— 每一秒都可能超出预期。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">EVENT</div>
+      <div class="t">厨房突发</div>
+      <div class="d">糊锅、油溅、忘关火、盐放多了。她表情和语气会立刻变，给出补救方案而不是重做。</div>
+    </div>
+  </div>
+
+  <div class="map-row">
+    <div class="map-side src">
+      <div class="k">CHARACTER</div>
+      <div class="t">手忙脚乱但可爱的她</div>
+      <div class="d">会紧张、会顶嘴、会因为你吼她而闹别扭 —— AI 的不完美被写成了角色魅力。</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="map-side dst">
+      <div class="k">CHARACTER</div>
+      <div class="t">不完美才像人</div>
+      <div class="d">她会记错你上次说“太咸”，会因为你夸她而尾巴翘起来，也会在你手忙脚乱时叹一口气。</div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:.5rem;font-size:.85rem;">还有一个没列进去的：HUD。驾驶游戏用仪表盘呈现速度与危险，我们对应的是灶台面板 —— 火候、计时、当前步骤。</p>

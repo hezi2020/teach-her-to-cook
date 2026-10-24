@@ -1,0 +1,216 @@
+<style>
+  .im{max-width:980px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin-top:10px}
+  .model{background:var(--bg-secondary);border:2px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .15s ease}
+  .model:hover{border-color:var(--accent)}
+  .model.selected{border-color:var(--selected-border);box-shadow:0 0 0 3px var(--selected-bg)}
+  .mh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
+  .mh .t{width:20px;height:20px;border-radius:50%;background:#EAF4EE;border:1px solid #A8D5C8;color:#4F6E5F;font-size:10px;display:flex;align-items:center;justify-content:center}
+  .mh h3{margin:0;font-size:.95rem}
+  .mh .tagline{margin-left:auto;font-size:.7rem;color:var(--text-secondary)}
+  .mk{background:#F1EAD9;padding:0;line-height:0}
+  .mb{padding:10px 12px}
+  .mb p{font-size:.78rem;color:var(--text-secondary);line-height:1.55}
+  .mb .row{display:flex;justify-content:space-between;font-size:.7rem;color:#8B8B90;margin-top:6px}
+  .prims{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:10px}
+  .prim{background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:10px}
+  .prim .ic{width:100%;height:46px;display:flex;align-items:center;justify-content:center;background:#F1EAD9;border-radius:8px;margin-bottom:7px}
+  .prim b{font-size:.85rem;display:block;margin-bottom:2px}
+  .prim span{font-size:.72rem;color:var(--text-secondary);line-height:1.45;display:block}
+</style>
+
+<div class="im">
+  <h2>中间那块，怎么玩？</h2>
+  <p class="subtitle">风格按你给的参考走：低饱和、扁平、大锅居中、没有硬描边。Live2D 留在右侧不动。差别只在「你的手在这件事里扮演什么」。</p>
+
+  <div class="grid3">
+
+    <!-- A 手把手 -->
+    <div class="model" data-choice="hand" onclick="toggleSelect(this)">
+      <div class="mh"><span class="t">A</span><h3>手把手带她做</h3><span class="tagline">互动最强</span></div>
+      <div class="mk">
+        <svg viewBox="0 0 300 196" width="100%" style="display:block">
+          <rect width="300" height="196" fill="#F1EAD9"/>
+          <rect y="150" width="300" height="46" fill="#DCC8AC"/>
+          <rect y="146" width="300" height="5" fill="#CDB695"/>
+          <!-- 背景道具 -->
+          <g opacity=".85">
+            <rect x="24" y="84" width="30" height="46" rx="5" fill="#E7DCC6"/>
+            <rect x="24" y="84" width="30" height="10" rx="4" fill="#C9B79A"/>
+            <path d="M244 130 q0 -26 16 -26 q16 0 16 26z" fill="#C9A78F"/>
+            <path d="M252 104 q4 -14 8 0" fill="none" stroke="#8FA383" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <!-- 灶台 -->
+          <ellipse cx="150" cy="164" rx="108" ry="9" fill="rgba(120,100,70,.13)"/>
+          <!-- 锅 -->
+          <path d="M52 104 Q56 172 150 172 Q244 172 248 104 Z" fill="#FBF7EE"/>
+          <ellipse cx="150" cy="104" rx="98" ry="19" fill="#FFFDF8"/>
+          <ellipse cx="150" cy="104" rx="86" ry="14" fill="#EFE6D4"/>
+          <ellipse cx="150" cy="104" rx="72" ry="10" fill="#E7D9C0"/>
+          <path d="M52 116 q-16 6 -12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M248 116 q16 6 12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <!-- 轨迹 -->
+          <path d="M112 100 a44 18 0 1 1 76 6 a44 18 0 1 1 -52 2" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-dasharray="5 6" opacity=".95"/>
+          <!-- 锅铲 -->
+          <g transform="rotate(-24 196 92)">
+            <rect x="190" y="46" width="9" height="58" rx="4.5" fill="#C9B79A"/>
+            <rect x="180" y="98" width="29" height="18" rx="7" fill="#E4D3B8" stroke="#CDB695" stroke-width="1.2"/>
+          </g>
+          <!-- 光标握持点 -->
+          <circle cx="196" cy="66" r="12" fill="#A8D5C8" opacity=".28"/>
+          <circle cx="196" cy="66" r="7.5" fill="#A8D5C8" stroke="#FFFDF8" stroke-width="2.4"/>
+          <g font-family="system-ui" font-size="9" fill="#4F6E5F">
+            <rect x="168" y="18" width="78" height="17" rx="8.5" fill="#FFFDF8" opacity=".95"/>
+            <text x="178" y="30">你按住这里</text>
+          </g>
+        </svg>
+      </div>
+      <div class="mb">
+        <p>按住锅铲/油瓶，拖着她的手一起动：画圈翻炒、控制倾倒、按节奏切。你不碰，她就自己按习惯做，质量慢慢掉。</p>
+        <div class="row"><span>操作量 高</span><span>像在握着她的手</span></div>
+      </div>
+    </div>
+
+    <!-- B 示范模仿 -->
+    <div class="model" data-choice="demo" onclick="toggleSelect(this)">
+      <div class="mh"><span class="t">B</span><h3>先示范，她模仿</h3><span class="tagline">教学感最强</span></div>
+      <div class="mk">
+        <svg viewBox="0 0 300 196" width="100%" style="display:block">
+          <rect width="300" height="196" fill="#F1EAD9"/>
+          <rect y="150" width="300" height="46" fill="#DCC8AC"/>
+          <rect y="146" width="300" height="5" fill="#CDB695"/>
+          <ellipse cx="164" cy="164" rx="96" ry="9" fill="rgba(120,100,70,.13)"/>
+          <path d="M70 104 Q74 172 164 172 Q254 172 258 104 Z" fill="#FBF7EE"/>
+          <ellipse cx="164" cy="104" rx="94" ry="19" fill="#FFFDF8"/>
+          <ellipse cx="164" cy="104" rx="82" ry="14" fill="#EFE6D4"/>
+          <ellipse cx="164" cy="104" rx="68" ry="10" fill="#E7D9C0"/>
+          <path d="M70 116 q-16 6 -12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M258 116 q16 6 12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <!-- 示范窗 -->
+          <rect x="12" y="16" width="94" height="76" rx="10" fill="#FFFDF8" opacity=".97"/>
+          <text x="22" y="31" font-family="system-ui" font-size="8" fill="#8B8272" letter-spacing="1">示范</text>
+          <circle cx="58" cy="58" r="18" fill="none" stroke="#A8D5C8" stroke-width="2.2" stroke-dasharray="4 4"/>
+          <path d="M58 40 v-6 M74 58 h6 M58 76 v6 M42 58 h-6" stroke="#A8D5C8" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="76" cy="43" r="5" fill="#A8D5C8"/>
+          <!-- 模仿度 -->
+          <rect x="250" y="30" width="34" height="96" rx="10" fill="#FFFDF8" opacity=".97"/>
+          <text x="258" y="45" font-family="system-ui" font-size="7.5" fill="#8B8272">模仿</text>
+          <rect x="259" y="55" width="16" height="58" rx="8" fill="#E7D9C0"/>
+          <rect x="259" y="83" width="16" height="30" rx="8" fill="#A8D5C8"/>
+          <text x="259" y="145" font-family="system-ui" font-size="7.5" fill="#4F6E5F">78%</text>
+        </svg>
+      </div>
+      <div class="mb">
+        <p>每一步先出现一个小示范窗，你照着比一遍（滑、画圈、按住），她随后模仿。模仿得像不像，取决于你示范得准不准。</p>
+        <div class="row"><span>操作量 中</span><span>更像“教”，不像“代做”</span></div>
+      </div>
+    </div>
+
+    <!-- C 时机指挥 -->
+    <div class="model" data-choice="timing" onclick="toggleSelect(this)">
+      <div class="mh"><span class="t">C</span><h3>时机与火候指挥</h3><span class="tagline">最省力</span></div>
+      <div class="mk">
+        <svg viewBox="0 0 300 196" width="100%" style="display:block">
+          <rect width="300" height="196" fill="#F1EAD9"/>
+          <rect y="150" width="300" height="46" fill="#DCC8AC"/>
+          <rect y="146" width="300" height="5" fill="#CDB695"/>
+          <ellipse cx="150" cy="164" rx="96" ry="9" fill="rgba(120,100,70,.13)"/>
+          <path d="M56 104 Q60 172 150 172 Q240 172 244 104 Z" fill="#FBF7EE"/>
+          <ellipse cx="150" cy="104" rx="94" ry="19" fill="#FFFDF8"/>
+          <ellipse cx="150" cy="104" rx="82" ry="14" fill="#EFE6D4"/>
+          <ellipse cx="150" cy="104" rx="68" ry="10" fill="#E7D9C0"/>
+          <path d="M56 116 q-16 6 -12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M244 116 q16 6 12 20" fill="none" stroke="#E4D8C2" stroke-width="5" stroke-linecap="round"/>
+          <!-- 时机环 -->
+          <path d="M78 78 a76 34 0 0 1 144 0" fill="none" stroke="#E7D9C0" stroke-width="5" stroke-linecap="round"/>
+          <path d="M166 45 a76 34 0 0 1 56 33" fill="none" stroke="#A8D5C8" stroke-width="5" stroke-linecap="round"/>
+          <path d="M176 40 l14 4 -8 12" fill="#4F6E5F"/>
+          <!-- 火候 -->
+          <rect x="252" y="36" width="36" height="104" rx="10" fill="#FFFDF8" opacity=".97"/>
+          <text x="259" y="50" font-family="system-ui" font-size="7.5" fill="#8B8272">火候</text>
+          <circle cx="270" cy="66" r="3" fill="#E7D9C0"/><circle cx="270" cy="82" r="4.5" fill="#A8D5C8"/><circle cx="270" cy="98" r="3" fill="#E7D9C0"/>
+          <rect x="261" y="112" width="18" height="4" rx="2" fill="#E7D9C0"/>
+          <rect x="261" y="112" width="11" height="4" rx="2" fill="#A8D5C8"/>
+        </svg>
+      </div>
+      <div class="mb">
+        <p>她自己动手，锅上出现时机环与火候杆。你在绿区按下、在正确时刻上划翻面、随时拨火。偏节奏游戏，手指压力最小。</p>
+        <div class="row"><span>操作量 低</span><span>更像“看着并喊停”</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.6rem;">六种操作基元</h3>
+  <p class="subtitle" style="margin-bottom:.4rem;">无论选哪种方案，中间的每一步都由这六种手势之一构成。一道菜 = 这些基元的排列组合。</p>
+  <div class="prims">
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <rect x="8" y="30" width="74" height="7" rx="3" fill="#C9B79A"/>
+          <path d="M22 14 l26 8 -6 7 -26 -8z" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          <rect x="46" y="20" width="26" height="5" rx="2.5" fill="#C9B79A" transform="rotate(17 46 20)"/>
+          <path d="M14 20 h14" stroke="#A8D5C8" stroke-width="2" stroke-dasharray="3 3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <b>切 · 滑动</b><span>沿砧板快速划过，节奏稳定则切块均匀</span>
+    </div>
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <rect x="34" y="8" width="22" height="22" rx="5" fill="#E7DCC6"/>
+          <rect x="38" y="6" width="14" height="5" rx="2" fill="#C9B79A"/>
+          <path d="M45 30 q0 10 -6 14" stroke="#A8D5C8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="39" cy="44" rx="3" ry="2" fill="#A8D5C8"/>
+          <rect x="24" y="34" width="42" height="8" rx="4" fill="#FFFDF8" stroke="#CDB695" stroke-width="1"/>
+        </svg>
+      </div>
+      <b>倒 · 长按控流</b><span>按住瓶身倾倒，让流量停在绿区再松手</span>
+    </div>
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <circle cx="45" cy="24" r="15" fill="#FFFDF8" stroke="#CDB695" stroke-width="1.2"/>
+          <path d="M45 9 a15 15 0 0 1 14 18" fill="none" stroke="#A8D5C8" stroke-width="3" stroke-linecap="round"/>
+          <path d="M57 24 l4 4 -6 2" fill="#A8D5C8"/>
+          <circle cx="45" cy="24" r="4" fill="#C9B79A"/>
+        </svg>
+      </div>
+      <b>搅 · 画圈</b><span>按住画圈，转速保持在环里才均匀、不粘</span>
+    </div>
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <path d="M14 32 h44 a6 6 0 0 0 0 -12 h-40" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          <rect x="58" y="30" width="24" height="5" rx="2.5" fill="#C9B79A"/>
+          <path d="M32 26 q4 -12 0 -20" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M26 8 l6 -4 6 4" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <b>翻 · 时机上划</b><span>指针进绿区时向上划，早了会破、晚了会焦</span>
+    </div>
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <path d="M24 22 q0 14 21 14 q21 0 21 -14z" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          <ellipse cx="45" cy="22" rx="21" ry="6" fill="#FFFDF8" stroke="#CDB695" stroke-width="1"/>
+          <path d="M45 16 q-8 -8 0 -12 q8 4 0 12" fill="none" stroke="#A8D5C8" stroke-width="2.2"/>
+          <circle cx="45" cy="16" r="1.8" fill="#A8D5C8"/>
+        </svg>
+      </div>
+      <b>淋 · 轨迹</b><span>沿虚线匀速移动，蛋液落成细线而不是一坨</span>
+    </div>
+    <div class="prim">
+      <div class="ic">
+        <svg viewBox="0 0 90 46" width="76" height="40">
+          <ellipse cx="45" cy="34" rx="28" ry="7" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          <ellipse cx="45" cy="31" rx="18" ry="4.5" fill="#E7D9C0"/>
+          <path d="M18 20 h20 l6 8" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M40 24 l4 4 -5 3" fill="#A8D5C8"/>
+        </svg>
+      </div>
+      <b>盛 · 拖拽</b><span>拖到盘子上，位置与速度决定摆盘完整度</span>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:1.25rem;font-size:.85rem;">选一个方案，我再把三道菜的每一步都改成对应的操作节点，然后给你完整的素材清单和提示词。</p>
+</div>

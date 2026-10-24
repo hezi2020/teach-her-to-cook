@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>まいにち食堂 · 教她做饭</title>
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+<div class="viewport">
+  <div class="stage" id="stage">
+    <img class="bg" id="bg" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" alt="">
+    <div class="veil"></div>
+
+    <header class="topbar">
+      <span class="brand" id="brand">まいにち食堂</span>
+      <span class="dish" id="dishName">还没选菜</span>
+      <span class="stepchip" id="stepChip">第 0 / 0 步</span>
+      <span class="dots" id="dots"></span>
+      <span class="timer" id="timer">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 1.5M9 3h6"/></svg>
+        <b id="timerText">00:00</b>
+      </span>
+      <span class="auto" id="autoChip"><i></i><b id="autoText">等待开始</b></span>
+      <button class="iconbtn" id="pauseBtn" title="暂停">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor"><rect x="7" y="5" width="3.4" height="14" rx="1"/><rect x="13.6" y="5" width="3.4" height="14" rx="1"/></svg>
+      </button>
+      <button class="iconbtn" id="muteBtn" title="音效开关">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path id="muteWave" d="M16.5 9a4 4 0 0 1 0 6"/><path id="muteCross" d="M16 9l5 6M21 9l-5 6" style="display:none"/></svg>
+      </button>
+      <button class="iconbtn" id="bookBtn" title="菜谱">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M8 9h6M8 13h6"/></svg>
+        <span>菜谱</span>
+      </button>
+    </header>
+    <div class="flow" id="flow"></div>
+
+    <aside class="heat" id="heatPanel">
+      <div class="k">火候</div>
+      <button class="lv" data-heat="0"><span class="fl"><svg viewBox="0 0 12 16" width="8" height="11"><path d="M6 1c2 4-1 4 0 7 1-1 2-2 2-3 2 3 1 9-2 9S2 11 3 8c1 2 2 1 3-1-1-2 0-4 0-6z" fill="#CBBFA8"/></svg></span>文火</button>
+      <button class="lv on" data-heat="1"><span class="fl"><svg viewBox="0 0 12 16" width="9" height="12"><path d="M6 0c2.5 4.5 0 4.5 1 8 1-1 2-2 2-3 2.5 3.5 1 11-3 11S1 10 2.5 7c1 2 2.5 1 3.5-1.5C5 3 5 2 6 0z" fill="#A8D5C8"/></svg></span>中火</button>
+      <button class="lv" data-heat="2"><span class="fl"><svg viewBox="0 0 12 16" width="9" height="12"><path d="M6 0c2.5 4.5 0 4.5 1 8 1-1 2-2 2-3 2.5 3.5 1 11-3 11S1 10 2.5 7c1 2 2.5 1 3.5-1.5C5 3 5 2 6 0z" fill="#D9A66B"/></svg></span>大火</button>
+      <div class="track"><i id="heatFill"></i><b id="heatKnob"></b></div>
+      <div class="burnwrap"><span>焦糊</span><span id="burnPct">0%</span></div>
+      <div class="burntrack"><i id="burnFill"></i></div>
+      <div class="burnwrap"><span>她的手感</span><span id="skillPct">80%</span></div>
+      <div class="burntrack skill"><i id="skillFill"></i></div>
+    </aside>
+
+    <aside class="tray" id="trayPanel">
+      <div class="k">食材</div>
+      <div class="grid" id="trayGrid"></div>
+    </aside>
+
+    <div class="board" id="board">
+      <div class="doing" id="doing" hidden><i></i><span id="doingText"></span></div>
+      <div class="board-inner" id="boardInner"></div>
+    </div>
+
+    <div class="charwrap" id="charwrap">
+      <canvas id="live2d"></canvas>
+      <img class="fallback" id="fallback" alt="" hidden>
+      <span class="expr" id="expr">LIVE2D · 平静</span>
+    </div>
+
+    <div class="bubble" id="bubble" hidden><span id="bubbleText"></span></div>
+
+    <div class="deck" id="deck">
+      <div class="opinfo">
+        <span class="opname" id="opName">等她开始</span>
+        <span class="ophint" id="opHint">按住工具，带着她的手做</span>
+      </div>
+      <div class="opmeter">
+        <div class="opbar"><i id="opFill"></i></div>
+        <span class="opcount" id="opCount"></span>
+      </div>
+      <button class="gk ghost" id="stopBtn">暂停</button>
+      <div class="ginput">
+        <input id="cmdInput" type="text" placeholder="对她说点什么…" autocomplete="off">
+        <button class="mic" id="ttsBtn" title="她的声音">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <button class="mic" id="micBtn" title="点一下开始说话">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 菜谱本 -->
+    <div class="overlay" id="drawer">
+      <div class="drawer">
+        <div class="d-head">
+          <span class="serif">菜谱本</span>
+          <span class="d-sub">3 道 · 学会 0</span>
+          <button class="iconbtn" id="drawerClose" title="关闭">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="tabs">
+          <span class="tab on">全部 3</span><span class="tab">新手 1</span><span class="tab">技巧 1</span><span class="tab">家常 1</span>
+        </div>
+        <div class="rlist" id="recipeList"></div>
+        <div class="d-foot">
+          <div class="hint">选中后她会问<br>「今天学这个？」</div>
+          <button class="btn-main" id="startBtn" disabled>今天学这道</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结算 -->
+    <div class="overlay" id="settlement" hidden>
+      <div class="modal">
+        <div class="eyebrow" id="stEyebrow">今天 · 第 1 次一起做饭</div>
+        <div class="dish2" id="stDish">番茄蛋花汤</div>
+        <div class="sub2" id="stSub">已收进她的拿手菜</div>
+        <div class="statrow">
+          <div class="stat"><div class="v" id="stTime">00:00</div><div class="l">用时</div></div>
+          <div class="stat"><div class="v" id="stFix">0 次</div><div class="l">完美</div></div>
+          <div class="stat"><div class="v" id="stMiss">0 次</div><div class="l">失误</div></div>
+        </div>
+        <div class="quote">
+          <img id="stAvatar" alt="">
+          <p id="stQuote">「下次我会记得先关小火。你尝一口嘛。」</p>
+        </div>
+        <div class="conf"><span>她的手艺</span><span id="stScore">0</span></div>
+        <div class="confbar"><i id="stBar"></i></div>
+        <div class="btns">
+          <button class="btn2 fill" id="stAgain">再做一次</button>
+          <button class="btn2 line" id="stOther">换一道</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.10/dist/browser/pixi.min.js"></script>
+<script>window.PIXI = window.PIXI;</script>
+<script src="https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.1/live2dcubismcore.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/cubism4.min.js"></script>
+
+<script src="js/data.js?v=3"></script>
+<script src="js/audio.js?v=3"></script>
+<script src="js/live2d.js?v=3"></script>
+<script src="js/voice.js?v=3"></script>
+<script src="js/minigames.js?v=3"></script>
+<script src="js/ui.js?v=3"></script>
+<script src="js/game.js?v=3"></script>
+<script src="js/main.js?v=3"></script>
+</body>
+</html>

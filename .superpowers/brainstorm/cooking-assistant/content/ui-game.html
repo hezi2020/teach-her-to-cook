@@ -1,0 +1,197 @@
+<style>
+  .g{max-width:980px}
+  .gstage{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:#EAF2EC; box-shadow:0 16px 36px rgba(90,120,100,.20); font-family:'Hiragino Sans','Yu Gothic UI','Noto Sans SC',system-ui,sans-serif;}
+  .gstage>img.bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .gstage .veil{position:absolute; inset:0; background:linear-gradient(180deg,rgba(18,38,28,.20),rgba(18,38,28,.06) 40%,rgba(18,38,28,.30));}
+  .gstage .serif{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif SC',serif;}
+
+  .gbar{position:absolute; top:0; left:0; right:0; height:46px; display:flex; align-items:center; gap:10px; padding:0 15px; background:rgba(251,250,245,.94); border-bottom:1px solid #E1ECE5; z-index:3;}
+  .gbar .dish{font-size:13px; letter-spacing:.12em; color:#2F4437;}
+  .gbar .stepchip{font-size:8.5px; color:#4F6E5F; background:#EAF4EE; border:1px solid #A8D5C8; border-radius:999px; padding:3px 8px; letter-spacing:.06em;}
+  .gbar .dots{display:flex; gap:4px; align-items:center;}
+  .gbar .dots i{width:14px; height:3px; border-radius:2px; background:#DCE8E0;}
+  .gbar .dots i.on{background:#A8D5C8;}
+  .gbar .timer{margin-left:auto; display:flex; align-items:center; gap:6px; font-size:11px; color:#2F4437; font-variant-numeric:tabular-nums; letter-spacing:.06em;}
+  .gbar .auto{font-size:8.5px; color:#5C7A6B; background:#FFFEFB; border:1px solid #D3E4DA; border-radius:999px; padding:3px 8px; display:flex; align-items:center; gap:4px;}
+  .gbar .auto i{width:5px; height:5px; border-radius:50%; background:#7DBFA5; box-shadow:0 0 0 3px rgba(125,191,165,.18);}
+  .gbar .pause{width:24px; height:24px; border-radius:50%; border:1px solid #D3E4DA; background:#FFFEFB; display:flex; align-items:center; justify-content:center;}
+
+  .heat{position:absolute; left:14px; top:60px; width:74px; background:rgba(251,250,245,.95); border:1px solid #D3E4DA; border-radius:13px; padding:9px 8px; box-shadow:0 8px 18px rgba(40,70,55,.14);}
+  .heat .k{font-size:7.5px; letter-spacing:.16em; color:#8FA796; text-align:center; margin-bottom:6px;}
+  .heat .lv{display:flex; align-items:center; gap:5px; font-size:8.5px; color:#9BB0A4; padding:3px 0;}
+  .heat .lv.on{color:#2F4437;}
+  .heat .lv .fl{width:14px; display:flex; justify-content:center;}
+  .heat .track{margin-top:6px; height:4px; border-radius:2px; background:#E6EFE9; position:relative;}
+  .heat .track i{position:absolute; left:0; top:0; height:4px; width:52%; border-radius:2px; background:#A8D5C8;}
+  .heat .track b{position:absolute; left:50%; top:-3px; width:10px; height:10px; margin-left:-5px; border-radius:50%; background:#FFFEFB; border:2px solid #7DBFA5;}
+
+  .tray{position:absolute; left:14px; top:214px; width:74px; background:rgba(251,250,245,.95); border:1px solid #D3E4DA; border-radius:13px; padding:8px; box-shadow:0 8px 18px rgba(40,70,55,.14);}
+  .tray .k{font-size:7.5px; letter-spacing:.16em; color:#8FA796; text-align:center; margin-bottom:5px;}
+  .tray .grid{display:grid; grid-template-columns:1fr 1fr; gap:4px;}
+  .slot{aspect-ratio:1; border-radius:8px; background:#F4F9F4; border:1px solid #E1ECE5; display:flex; align-items:center; justify-content:center; position:relative;}
+  .slot.used{opacity:.4;}
+  .slot .n{position:absolute; right:1px; bottom:0; font-size:6.5px; color:#A2B5A9;}
+
+  .potwrap{position:absolute; left:24%; bottom:96px; width:320px;}
+  .pot{width:100%; display:block; filter:drop-shadow(0 14px 18px rgba(40,60,50,.18));}
+  .doing{position:absolute; left:50%; top:-6px; transform:translateX(-50%); display:flex; align-items:center; gap:6px; background:rgba(251,250,245,.96); border:1px solid #D3E4DA; border-radius:999px; padding:5px 11px; font-size:9px; color:#2F4437; white-space:nowrap; box-shadow:0 6px 14px rgba(40,70,55,.12);}
+  .doing i{width:5px; height:5px; border-radius:50%; background:#7DBFA5;}
+
+  .char{position:absolute; right:2%; bottom:84px; height:74%; border-radius:10px;
+    mask-image:radial-gradient(ellipse 72% 70% at 50% 46%,#000 56%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 46%,#000 56%,transparent 100%);}
+  .expr{position:absolute; right:6%; bottom:80px; font-size:8px; letter-spacing:.14em; color:#4F6E5F; background:rgba(251,250,245,.9); border:1px solid #D3E4DA; border-radius:999px; padding:3px 8px;}
+  .bubble{position:absolute; right:20%; top:20%; max-width:190px; background:rgba(251,250,245,.97); border:1px solid #D3E4DA; border-radius:13px 13px 4px 13px; padding:8px 11px; font-size:10px; line-height:1.5; color:#33473D; box-shadow:0 6px 16px rgba(40,70,55,.16);}
+  .bubble::after{content:''; position:absolute; right:20px; bottom:-6px; width:10px; height:10px; background:rgba(251,250,245,.97); border-right:1px solid #D3E4DA; border-bottom:1px solid #D3E4DA; transform:rotate(45deg);}
+
+  .deck{position:absolute; left:0; right:0; bottom:0; height:80px; background:rgba(251,250,245,.97); border-top:1px solid #E1ECE5; display:flex; align-items:center; gap:7px; padding:0 14px; z-index:3;}
+  .gk{height:36px; min-width:78px; padding:0 12px; border-radius:10px; border:1px solid #D3E4DA; background:#FFFEFB; color:#3E5749; font-size:9.5px; display:flex; align-items:center; justify-content:center; gap:5px; letter-spacing:.02em;}
+  .gk.pri{background:#A8D5C8; border-color:#A8D5C8; color:#2F4437; box-shadow:0 4px 12px rgba(120,180,155,.28);}
+  .gk.warn{background:#FBF4EC; border-color:#E7D3BC; color:#8A6A4A;}
+  .gk.ghost{color:#9BB0A4;}
+  .ginput{margin-left:auto; display:flex; align-items:center; gap:6px; height:34px; border:1px solid #DBE8DF; border-radius:999px; padding:0 5px 0 12px; background:#FFFEFB; min-width:190px;}
+  .ginput .ph{flex:1; font-size:9px; color:#A2B5A9;}
+
+  .exprs{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin-top:10px;}
+  .ex{background:var(--bg-secondary); border:1px solid var(--border); border-radius:12px; overflow:hidden;}
+  .ex .im{height:96px; background:#EAF2EC; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .ex .im img{width:100%; height:100%; object-fit:cover; object-position:50% 22%;}
+  .ex .tx{padding:7px 9px;}
+  .ex .tx b{font-size:.82rem; display:block; margin-bottom:2px;}
+  .ex .tx span{font-size:.72rem; color:var(--text-secondary); line-height:1.4; display:block;}
+  .ways{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:9px; margin-top:10px;}
+  .way{background:var(--bg-secondary); border:1px solid var(--border); border-radius:12px; padding:11px;}
+  .way h4{font-size:.86rem; margin-bottom:4px;}
+  .way p{font-size:.76rem; color:var(--text-secondary); line-height:1.5;}
+  .way .tag{display:inline-block; font-size:7.5px; letter-spacing:.12em; color:#8FA796; margin-bottom:5px;}
+</style>
+
+<div class="g">
+  <h2>做饭小游戏 · 主界面</h2>
+  <p class="subtitle">她自己动手做，你在旁边随时能插话。锅里、灶上、她脸上，三处都要实时变。</p>
+
+  <div class="gstage">
+    <img class="bg" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" alt="">
+    <div class="veil"></div>
+
+    <div class="gbar">
+      <span class="serif dish">番茄蛋花汤</span>
+      <span class="stepchip">第 3 / 4 步</span>
+      <span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+      <span class="timer">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#4F6E5F" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 1.5M9 3h6"/></svg>
+        02:14
+      </span>
+      <span class="auto"><i></i>她在自己做</span>
+      <span class="pause">
+        <svg viewBox="0 0 24 24" width="9" height="9" fill="#4F6E5F"><rect x="7" y="5" width="3.4" height="14" rx="1"/><rect x="13.6" y="5" width="3.4" height="14" rx="1"/></svg>
+      </span>
+    </div>
+
+    <!-- heat control -->
+    <div class="heat">
+      <div class="k">火候</div>
+      <div class="lv"><span class="fl"><svg viewBox="0 0 12 16" width="8" height="11"><path d="M6 1c2 4-1 4 0 7 1-1 2-2 2-3 2 3 1 9-2 9S2 11 3 8c1 2 2 1 3-1-1-2 0-4 0-6z" fill="#E7D3BC"/></svg></span>文火</div>
+      <div class="lv on"><span class="fl"><svg viewBox="0 0 12 16" width="9" height="12"><path d="M6 0c2.5 4.5 0 4.5 1 8 1-1 2-2 2-3 2.5 3.5 1 11-3 11S1 10 2.5 7c1 2 2.5 1 3.5-1.5C5 3 5 2 6 0z" fill="#A8D5C8"/></svg></span>中火</div>
+      <div class="lv"><span class="fl"><svg viewBox="0 0 12 16" width="9" height="12"><path d="M6 0c2.5 4.5 0 4.5 1 8 1-1 2-2 2-3 2.5 3.5 1 11-3 11S1 10 2.5 7c1 2 2.5 1 3.5-1.5C5 3 5 2 6 0z" fill="#D9A66B"/></svg></span>大火</div>
+      <div class="track"><i></i><b></b></div>
+    </div>
+
+    <!-- ingredient tray -->
+    <div class="tray">
+      <div class="k">食材</div>
+      <div class="grid">
+        <div class="slot used"><svg viewBox="0 0 24 24" width="16" height="16"><ellipse cx="12" cy="12" rx="9" ry="7" fill="#FBF8F1" stroke="#D8CEBD"/><circle cx="12" cy="12" r="3.2" fill="#F0D18A"/></svg><span class="n">1</span></div>
+        <div class="slot used"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="13" r="7" fill="#CF7F68"/><path d="M12 6q2-3 4-2-1 2-4 2z" fill="#8FA383"/></svg><span class="n">0</span></div>
+        <div class="slot"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 20V9q0-3 2-4 2 1 2 4v11M14 20V8q0-3 2-4 2 1 2 4v12" fill="none" stroke="#8FA383" stroke-width="1.8" stroke-linecap="round"/></svg><span class="n">2</span></div>
+        <div class="slot"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 9h8l1 11H7z" fill="#FBF8F1" stroke="#D8CEBD" stroke-width="1.4"/><path d="M9.5 9v-2h5v2" fill="none" stroke="#D8CEBD" stroke-width="1.4"/><circle cx="12" cy="14" r="1" fill="#C9BFAE"/><circle cx="12" cy="17" r="1" fill="#C9BFAE"/></svg><span class="n">4</span></div>
+      </div>
+    </div>
+
+    <!-- pot -->
+    <div class="potwrap">
+      <div class="doing"><i></i>她正在淋蛋液 · 还差 8 秒</div>
+      <svg class="pot" viewBox="0 0 320 200">
+        <ellipse cx="160" cy="182" rx="118" ry="10" fill="rgba(30,55,42,.14)"/>
+        <rect x="26" y="150" width="268" height="26" rx="10" fill="#EDE6D8" stroke="#DBD0BC" stroke-width="1.4"/>
+        <ellipse cx="160" cy="150" rx="86" ry="11" fill="#DED5C3"/>
+        <path d="M78 84 Q80 150 160 150 Q240 150 242 84 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.8"/>
+        <ellipse cx="160" cy="84" rx="82" ry="16" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.8"/>
+        <ellipse cx="160" cy="84" rx="68" ry="11" fill="#E4B38F"/>
+        <path d="M104 86 q12 -7 22 0 q11 6 22 0 q11 -6 22 0 q11 6 22 0" fill="none" stroke="#F7DFA6" stroke-width="3" stroke-linecap="round"/>
+        <path d="M112 90 q11 -4 20 1 q10 4 20 -1 q10 -4 18 1" fill="none" stroke="#FFFDF4" stroke-width="1.8" stroke-linecap="round" opacity=".9"/>
+        <circle cx="120" cy="82" r="4" fill="#CF7F68"/><circle cx="196" cy="80" r="3.4" fill="#C4735D"/>
+        <path d="M120 60 q6 -10 0 -22" fill="none" stroke="#B7C9BE" stroke-width="2.4" stroke-linecap="round" opacity=".6"/>
+        <path d="M152 56 q6 -10 0 -22" fill="none" stroke="#B7C9BE" stroke-width="2.4" stroke-linecap="round" opacity=".48"/>
+        <path d="M186 58 q6 -10 0 -22" fill="none" stroke="#B7C9BE" stroke-width="2.4" stroke-linecap="round" opacity=".34"/>
+        <path d="M242 104 q18 2 14 22" fill="none" stroke="#D8CEBD" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M64 92 q-14 4-10 18" fill="none" stroke="#D8CEBD" stroke-width="3.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <img class="char" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20upper%20body%20portrait%20plain%20white%20background%20clean%20minimal%20line%20art&image_size=portrait_4_3" alt="Live2D 半身">
+    <span class="expr">LIVE2D · 专注</span>
+    <div class="bubble">我手抬高一点，蛋液会细一些吧？</div>
+
+    <div class="deck">
+      <span class="gk pri">现在放</span>
+      <span class="gk">再等 10 秒</span>
+      <span class="gk">翻面</span>
+      <span class="gk">加盐</span>
+      <span class="gk warn">火太大</span>
+      <span class="gk ghost">先停下</span>
+      <div class="ginput">
+        <span class="ph">对她说点什么…</span>
+        <span style="width:22px;height:22px;border-radius:50%;border:1px solid #D3E4DA;background:#F4F9F4;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#5C7A6B" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:.85rem;font-size:.84rem;">左侧火候与食材常驻；中间是锅；右侧是她的 Live2D 半身与当前神态；底部一排是对她的干涉指令，随步骤自动换词。</p>
+
+  <h3 style="margin-top:1.6rem;">神态差分 · 五种状态</h3>
+  <p class="subtitle" style="margin-bottom:.5rem;">同一套模型，靠表情文件驱动。她先变脸，再说话。</p>
+  <div class="exprs">
+    <div class="ex"><div class="im"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20upper%20body%20portrait%20plain%20white%20background&image_size=portrait_4_3" alt=""></div><div class="tx"><b>平静</b><span>待机、等你说下一步。呼吸幅度最小。</span></div></div>
+    <div class="ex"><div class="im"><img style="object-position:50% 18%;" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20focused%20serious%20expression%20upper%20body%20portrait%20plain%20white%20background&image_size=portrait_4_3" alt=""></div><div class="tx"><b>专注</b><span>执行动作时。视线跟着手，眨眼频率降低。</span></div></div>
+    <div class="ex"><div class="im"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20panicked%20surprised%20expression%20upper%20body%20portrait%20plain%20white%20background&image_size=portrait_4_3" alt=""></div><div class="tx"><b>慌张</b><span>冒烟、溅油、做错时。后退半步 + 抬手。</span></div></div>
+    <div class="ex"><div class="im"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20proud%20happy%20smile%20upper%20body%20portrait%20plain%20white%20background&image_size=portrait_4_3" alt=""></div><div class="tx"><b>得意</b><span>被你夸、做对了关键步骤。会把下巴抬起来。</span></div></div>
+    <div class="ex"><div class="im"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20sad%20pouting%20expression%20upper%20body%20portrait%20plain%20white%20background&image_size=portrait_4_3" alt=""></div><div class="tx"><b>委屈</b><span>被你连续否定。动作变慢，台词变短。</span></div></div>
+  </div>
+
+  <h3 style="margin-top:1.6rem;">干涉的四种方式</h3>
+  <div class="ways">
+    <div class="way">
+      <span class="tag">01 / QUICK</span>
+      <h4>底部指令条</h4>
+      <p>随当前步骤换词：这一步只会出现「现在放 / 再等 10 秒 / 翻面 / 火太大」。不需要打字，手指按一下就算教了。</p>
+    </div>
+    <div class="way">
+      <span class="tag">02 / SCENE</span>
+      <h4>点场景里的东西</h4>
+      <p>点盐罐她就去拿盐，点锅盖她就盖上，点砧板她会退回去切。物件本身就是按钮。</p>
+    </div>
+    <div class="way">
+      <span class="tag">03 / DIAL</span>
+      <h4>直接拨火候</h4>
+      <p>左侧三档滑杆。拨到文火，她的动作会跟着变慢；拨到大火，锅里马上冒烟。</p>
+    </div>
+    <div class="way">
+      <span class="tag">04 / TALK</span>
+      <h4>说话或打字</h4>
+      <p>自由指令只认关键词：「小点火」「先别放」「尝一下」。认不出的，她会歪头问一句「欸？」</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.6rem;">她的自主性</h3>
+  <p class="subtitle" style="margin-bottom:.4rem; font-size:.85rem;">不干涉，她也会自己往下做 —— 这是“教”成立的前提。</p>
+  <div class="ways">
+    <div class="way"><h4>不管她，她会自己判断</h4><p>按自己的经验推进，可能对也可能错。你没交代过的环节，她就用自己的习惯来。</p></div>
+    <div class="way"><h4>教过一次就学会</h4><p>同一道菜第二次做，她会在那个环节主动按你上次说的做，并问一句「这次也这样吗？」</p></div>
+    <div class="way"><h4>教得越多，越像你的口味</h4><p>你总说“少盐”“火小一点”，她做别的菜时也会偏向这个习惯。这是长期陪伴感的来源。</p></div>
+  </div>
+
+  <p class="subtitle" style="margin-top:1.25rem; font-size:.84rem;">这套界面在原型里可以完全跑通：Live2D 用示例模型加载表情，锅的状态用 SVG 分层切换，指令条按时序脚本变化，不需要接大模型。</p>
+</div>

@@ -1,0 +1,244 @@
+<style>
+  .p2{max-width:980px}
+  .p2 .stage2{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:#EAF2EC; box-shadow:0 16px 36px rgba(90,120,100,.20); font-family:'Hiragino Sans','Yu Gothic UI','Noto Sans SC',system-ui,sans-serif;}
+  .p2 .stage2 > img.bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .p2 .veil2{position:absolute; inset:0; background:linear-gradient(180deg,rgba(18,38,28,.14),rgba(18,38,28,.03) 42%,rgba(18,38,28,.22));}
+  .p2 .serif{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif SC',serif;}
+  .p2 h4{margin:0;}
+
+  /* drawer */
+  .drawer{position:absolute; top:0; right:0; bottom:0; width:436px; background:rgba(251,250,245,.985); border-left:1px solid #D3E4DA; box-shadow:-18px 0 40px rgba(40,70,55,.18); display:flex; flex-direction:column; padding:14px 14px 12px;}
+  .d-head{display:flex; align-items:center; gap:8px; margin-bottom:10px;}
+  .d-head .t{font-size:13px; letter-spacing:.14em; color:#2F4437;}
+  .d-head .x{margin-left:auto; width:24px; height:24px; border-radius:50%; border:1px solid #D3E4DA; display:flex; align-items:center; justify-content:center; color:#5C7A6B;}
+  .tabs2{display:flex; gap:5px; margin-bottom:9px;}
+  .tab2{font-size:9px; color:#7E9A8B; padding:4px 9px; border-radius:999px; border:1px solid #E1ECE5; background:#FFFEFB;}
+  .tab2.on{background:#EAF4EE; border-color:#A8D5C8; color:#2F4437;}
+  .search2{display:flex; align-items:center; gap:6px; height:30px; border:1px solid #DBE8DF; border-radius:999px; padding:0 11px; background:#FFFEFB; margin-bottom:10px; font-size:9.5px; color:#A2B5A9;}
+  .rlist{flex:1; display:flex; flex-direction:column; gap:6px; overflow:hidden;}
+  .ritem{display:flex; align-items:center; gap:9px; padding:7px; border-radius:11px; border:1px solid transparent; background:#FBFCF9;}
+  .ritem.on{border-color:#A8D5C8; background:#F2F9F5; box-shadow:0 3px 10px rgba(120,170,145,.14);}
+  .ritem img{width:46px; height:46px; border-radius:9px; object-fit:cover; background:#E9F3ED; border:1px solid #E1ECE5;}
+  .ritem .nm{font-size:10.5px; color:#2F4437; margin-bottom:2px;}
+  .ritem .mt{font-size:8.5px; color:#8FA796;}
+  .badge{margin-left:auto; font-size:8px; letter-spacing:.08em; padding:2px 6px; border-radius:999px; background:#FFF; border:1px solid #D3E4DA; color:#7E9A8B;}
+  .badge.learned{background:#EAF4EE; border-color:#A8D5C8; color:#4F6E5F;}
+  .d-foot{display:flex; gap:7px; align-items:center; padding-top:9px; border-top:1px solid #E1ECE5; margin-top:9px;}
+  .d-foot .hint{font-size:8.5px; color:#8FA796; line-height:1.4;}
+  .btn-main{margin-left:auto; height:30px; padding:0 14px; border-radius:999px; background:#A8D5C8; color:#2F4437; font-size:9.5px; display:flex; align-items:center; box-shadow:0 4px 12px rgba(120,180,155,.28);}
+
+  /* settlement */
+  .modal{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:372px; background:rgba(251,250,245,.99); border:1px solid #D3E4DA; border-radius:18px; padding:16px; box-shadow:0 22px 50px rgba(35,60,50,.28);}
+  .modal .eyebrow{font-size:8px; letter-spacing:.16em; color:#8FA796; text-align:center;}
+  .modal .dish2{font-size:17px; letter-spacing:.1em; color:#2F4437; text-align:center; margin-top:4px;}
+  .modal .sub2{font-size:8.5px; color:#9BB0A4; text-align:center; margin-top:3px; letter-spacing:.06em;}
+  .statrow{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:12px 0;}
+  .stat{background:#F4F9F4; border-radius:9px; padding:7px 4px; text-align:center;}
+  .stat .v{font-size:12px; color:#2F4437;}
+  .stat .l{font-size:8px; color:#8FA796; margin-top:2px;}
+  .quote2{display:flex; gap:8px; align-items:flex-start; background:#EFF5F0; border-radius:11px; padding:9px; margin-bottom:10px;}
+  .quote2 img{width:30px; height:30px; border-radius:50%; object-fit:cover; background:#E9F3ED; flex-shrink:0;}
+  .quote2 p{font-size:9.5px; line-height:1.55; color:#3E5749;}
+  .conf{font-size:8px; color:#8FA796; display:flex; justify-content:space-between; margin-bottom:4px;}
+  .confbar{height:4px; border-radius:2px; background:#E6EFE9; overflow:hidden; margin-bottom:12px;}
+  .confbar i{display:block; height:100%; width:72%; background:linear-gradient(90deg,#A8D5C8,#7DBFA5); border-radius:2px;}
+  .btns2{display:flex; gap:6px;}
+  .btn2{height:30px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:9.5px; flex:1;}
+  .btn2.fill{background:#A8D5C8; color:#2F4437; box-shadow:0 4px 14px rgba(120,180,155,.3);}
+  .btn2.line{border:1px solid #D3E4DA; color:#4F6E5F; background:#FFFEFB;}
+  .btn2.ghost{flex:0 0 66px; color:#9BB0A4;}
+
+  /* sync */
+  .sync-top{position:absolute; top:0; left:0; right:0; height:46px; display:flex; align-items:center; gap:10px; padding:0 15px; background:rgba(251,250,245,.94); border-bottom:1px solid #E1ECE5;}
+  .sync-top .t{font-size:12px; letter-spacing:.12em; color:#2F4437;}
+  .sync-top .chipset{margin-left:auto; display:flex; align-items:center; gap:6px; font-size:8.5px; color:#5C7A6B;}
+  .toggle{width:26px; height:14px; border-radius:999px; background:#A8D5C8; position:relative;}
+  .toggle::after{content:''; position:absolute; right:2px; top:2px; width:10px; height:10px; border-radius:50%; background:#FFFEFB;}
+  .sync-body{position:absolute; top:46px; left:0; right:0; bottom:0; display:flex;}
+  .col-her{width:44%; position:relative; overflow:hidden; border-right:1px solid rgba(211,228,218,.7);}
+  .col-her img.k{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .col-her .v3{position:absolute; inset:0; background:linear-gradient(180deg,rgba(18,38,28,.10),rgba(18,38,28,.03) 40%,rgba(18,38,28,.26));}
+  .col-her .ch{position:absolute; left:50%; bottom:0; transform:translateX(-50%); height:72%; border-radius:8px;
+    mask-image:radial-gradient(ellipse 70% 68% at 50% 46%,#000 56%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 46%,#000 56%,transparent 100%);}
+  .col-her .lbl{position:absolute; left:12px; top:10px; font-size:8px; letter-spacing:.16em; color:#4F6E5F; background:rgba(251,250,245,.85); border-radius:999px; padding:3px 8px;}
+  .col-her .said{position:absolute; left:12px; right:12px; bottom:12px; background:rgba(251,250,245,.96); border:1px solid #D3E4DA; border-radius:12px 12px 12px 4px; padding:8px 10px; font-size:9.5px; line-height:1.5; color:#33473D; box-shadow:0 6px 14px rgba(40,70,55,.14);}
+  .col-me{flex:1; background:#FBFAF5; display:flex; flex-direction:column; padding:12px 14px;}
+  .sync-pill{align-self:center; font-size:8.5px; color:#4F6E5F; background:#EAF4EE; border:1px solid #A8D5C8; border-radius:999px; padding:3px 10px; margin-bottom:10px;}
+  .mylist{display:flex; flex-direction:column; gap:6px;}
+  .mstep{display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:9px; background:#F8FBF7; border:1px solid #E6EFE9;}
+  .mstep.now{background:#F1F9F4; border-color:#A8D5C8;}
+  .mstep .box{width:13px; height:13px; border-radius:4px; border:1px solid #CBDDD2; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#FFFEFB;}
+  .mstep.done .box{background:#A8D5C8; border-color:#A8D5C8;}
+  .mstep .txt{font-size:9.5px; color:#3E5749;}
+  .mstep.done .txt{color:#9BB0A4; text-decoration:line-through;}
+  .mstep .rt{margin-left:auto; font-size:8px; color:#8FA796;}
+  .mstep.now .rt{color:#4F6E5F;}
+  .me-input{margin-top:auto; display:flex; gap:6px; align-items:center; border-top:1px solid #E6EFE9; padding-top:10px;}
+  .me-input .pill3{font-size:8.5px; color:#3E5749; background:#F4F9F4; border:1px solid #D3E4DA; border-radius:999px; padding:4px 9px;}
+  .me-input .field{margin-left:auto; flex:1; max-width:150px; height:28px; border:1px solid #DBE8DF; border-radius:999px; display:flex; align-items:center; padding:0 10px; font-size:9px; color:#A2B5A9; background:#FFFEFB;}
+  .note2{font-size:.78rem; color:var(--text-secondary); margin-top:8px;}
+</style>
+
+<div class="p2">
+  <h2>01 · 菜谱本抽屉</h2>
+  <p class="subtitle">从顶部栏打开，从右侧滑出，盖住场景但不打断她。选菜是循环的起点。</p>
+
+  <div class="stage2">
+    <img class="bg" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" alt="">
+    <div class="veil2" style="background:rgba(30,55,42,.34); backdrop-filter:blur(1.5px);"></div>
+
+    <div class="drawer">
+      <div class="d-head">
+        <span class="serif t">菜谱本</span>
+        <span style="font-size:8.5px; color:#9BB0A4; letter-spacing:.1em;">12 道 · 学会 3</span>
+        <span class="x">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </span>
+      </div>
+      <div class="tabs2">
+        <span class="tab2 on">全部 12</span>
+        <span class="tab2">新手 5</span>
+        <span class="tab2">家常 5</span>
+        <span class="tab2">硬菜 2</span>
+      </div>
+      <div class="search2">
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#A2B5A9" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>
+        找一个今天想吃的…
+      </div>
+
+      <div class="rlist">
+        <div class="ritem on">
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20tomato%20egg%20drop%20soup%20in%20white%20ceramic%20bowl%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+          <div>
+            <div class="nm">番茄蛋花汤</div>
+            <div class="mt">15 分钟 · 3 样 · 新手</div>
+          </div>
+          <span class="badge learned">学会 1 次</span>
+        </div>
+        <div class="ritem">
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20tamagoyaki%20rolled%20omelette%20on%20small%20ceramic%20plate%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+          <div>
+            <div class="nm">出汁玉子烧</div>
+            <div class="mt">12 分钟 · 4 样 · 新手</div>
+          </div>
+          <span class="badge">还没教过</span>
+        </div>
+        <div class="ritem">
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20miso%20soup%20in%20lacquer%20bowl%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+          <div>
+            <div class="nm">豆腐味噌汤</div>
+            <div class="mt">10 分钟 · 3 样 · 新手</div>
+          </div>
+          <span class="badge learned">学会 2 次</span>
+        </div>
+        <div class="ritem">
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20oyakodon%20chicken%20and%20egg%20rice%20bowl%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+          <div>
+            <div class="nm">亲子丼</div>
+            <div class="mt">20 分钟 · 5 样 · 家常</div>
+          </div>
+          <span class="badge">还没教过</span>
+        </div>
+      </div>
+
+      <div class="d-foot">
+        <div class="hint">选中会读到右边<br>「今天学这个」</div>
+        <span class="btn-main">今天学这道</span>
+      </div>
+    </div>
+  </div>
+  <p class="note2">抽屉宽度 436px；列表行 46px 缩略图 + 名称 + 元信息 + 学习状态。学过两次以上的会标「拿手」。</p>
+
+  <h2 style="margin-top:2rem;">02 · 做菜结算</h2>
+  <p class="subtitle">出锅后盖一层卡片。重点是她的评价与“学会了”这件事，不是打分排行榜。</p>
+
+  <div class="stage2">
+    <img class="bg" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" alt="">
+    <div class="veil2" style="background:rgba(24,45,34,.42); backdrop-filter:blur(2px);"></div>
+
+    <div class="modal">
+      <div class="eyebrow">10月24日 · 第 07 次一起做饭</div>
+      <div class="dish2">番茄蛋花汤</div>
+      <div class="sub2">已收进她的拿手菜</div>
+
+      <div class="statrow">
+        <div class="stat"><div class="v">12:40</div><div class="l">用时</div></div>
+        <div class="stat"><div class="v">2 次</div><div class="l">你纠正了</div></div>
+        <div class="stat"><div class="v">1 次</div><div class="l">火候失误</div></div>
+      </div>
+
+      <div class="quote2">
+        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20bust%20portrait%20plain%20white%20background%20clean%20minimal%20line%20art&image_size=square" alt="">
+        <p>「下次我会记得先关小火。你尝一口嘛，就一口。」</p>
+      </div>
+
+      <div class="conf"><span>她的信心</span><span>72</span></div>
+      <div class="confbar"><i></i></div>
+
+      <div class="btns2">
+        <span class="btn2 fill">收进拿手菜</span>
+        <span class="btn2 line">再做一次</span>
+        <span class="btn2 ghost">换一道</span>
+      </div>
+    </div>
+  </div>
+  <p class="note2">结算卡 372px，居中悬浮。三项统计只记录过程，不做星级评分；主按钮永远是「收进拿手菜」。</p>
+
+  <h2 style="margin-top:2rem;">03 · 「我也在做」线下同步</h2>
+  <p class="subtitle">同一份菜谱，两边同时进行。左边是她的厨房，右边是你的，底部对齐进度。</p>
+
+  <div class="stage2">
+    <div class="sync-top">
+      <span class="t">我也在做 · 番茄蛋花汤</span>
+      <span class="sync-top chipset">
+        <span>线下同步</span>
+        <span class="toggle"></span>
+        <span style="margin-left:8px; letter-spacing:.1em; color:#2F4437;">12:40</span>
+      </span>
+    </div>
+    <div class="sync-body">
+      <div class="col-her">
+        <img class="k" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_4_3" alt="">
+        <div class="v3"></div>
+        <span class="lbl">她的厨房 · 第 3 步</span>
+        <img class="ch" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20standing%20full%20body%20plain%20white%20background%20clean%20minimal%20line%20art&image_size=portrait_4_3" alt="">
+        <div class="said">「我这边把番茄放下了。你那边到哪一步了？」</div>
+      </div>
+
+      <div class="col-me">
+        <div class="sync-pill">● 进度接上了 · 都在第 3 步</div>
+        <div class="mylist">
+          <div class="mstep done">
+            <span class="box"><svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="#2F4437" stroke-width="3.4" stroke-linecap="round"><path d="M5 13l4 5L19 6"/></svg></span>
+            <span class="txt">烧一锅水</span>
+            <span class="rt">01:40</span>
+          </div>
+          <div class="mstep done">
+            <span class="box"><svg viewBox="0 0 24 24" width="8" height="8" fill="none" stroke="#2F4437" stroke-width="3.4" stroke-linecap="round"><path d="M5 13l4 5L19 6"/></svg></span>
+            <span class="txt">番茄切块</span>
+            <span class="rt">02:12</span>
+          </div>
+          <div class="mstep now">
+            <span class="box"></span>
+            <span class="txt">番茄下锅，中火 3 分钟</span>
+            <span class="rt">剩 01:20</span>
+          </div>
+          <div class="mstep">
+            <span class="box"></span>
+            <span class="txt">淋蛋液、加盐，出锅</span>
+            <span class="rt">—</span>
+          </div>
+        </div>
+
+        <div class="me-input">
+          <span class="pill3">我也到第 3 步了</span>
+          <span class="pill3">等一下</span>
+          <span class="pill3">我卡住了</span>
+          <span class="field">说点什么…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note2">左侧占 44%，右侧是你的进度清单：勾选推进，当前步骤显示剩余时间。两边进度不一致时，她的开场句会自动变成「你慢一点，我等你」。</p>
+</div>

@@ -1,0 +1,307 @@
+<style>
+  .d3{max-width:980px}
+  .dish{background:var(--bg-secondary); border:1px solid var(--border); border-radius:16px; padding:14px; margin-bottom:16px;}
+  .dish-h{display:flex; align-items:center; gap:10px; margin-bottom:11px;}
+  .dish-h .no{width:24px; height:24px; border-radius:50%; background:#EAF4EE; border:1px solid #A8D5C8; color:#4F6E5F; font-size:9px; display:flex; align-items:center; justify-content:center; letter-spacing:.06em;}
+  .dish-h .nm{font-size:15px; font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif SC',serif; letter-spacing:.1em; color:#2F4437;}
+  .dish-h .mt{font-size:8.5px; color:#8FA796; margin-top:2px; letter-spacing:.04em;}
+  .dish-h .hard{margin-left:auto; font-size:8.5px; color:#8A6A4A; background:#FBF4EC; border:1px solid #E7D3BC; border-radius:999px; padding:3px 9px;}
+  .dish-h img.thumb{width:44px; height:44px; border-radius:10px; object-fit:cover; border:1px solid #E1ECE5; background:#E9F3ED;}
+  .strip{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+  @media (max-width:760px){ .strip{grid-template-columns:repeat(2,1fr);} }
+  .fr{background:#FCFBF6; border:1px solid #E1ECE5; border-radius:12px; padding:9px; display:flex; flex-direction:column; gap:5px;}
+  .fr-h{display:flex; align-items:center; font-size:8px; color:#8FA796; letter-spacing:.1em;}
+  .fr-h .tm{margin-left:auto; font-variant-numeric:tabular-nums;}
+  .art{background:#F4F9F4; border-radius:9px; padding:2px 4px;}
+  .act{display:flex; align-items:center; gap:5px; font-size:9.5px; color:#2F4437;}
+  .act i{width:6px; height:6px; border-radius:50%; background:#A8D5C8; flex-shrink:0;}
+  .say2{font-size:8.5px; color:#5C7A6B; background:#EFF5F0; border-radius:7px; padding:4px 7px;}
+  .cap{font-size:8px; color:#9BB0A4; line-height:1.45; min-height:24px;}
+  .layers{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-top:10px;}
+  .layer{background:var(--bg-secondary); border:1px solid var(--border); border-radius:12px; padding:12px;}
+  .layer .k{font-size:8px; letter-spacing:.16em; color:#8FA796; margin-bottom:4px;}
+  .layer h4{font-size:.9rem; margin-bottom:4px;}
+  .layer p{font-size:.78rem; color:var(--text-secondary); line-height:1.5;}
+  .pills{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
+  .pills span{font-size:8.5px; color:#4F6E5F; background:#F4F9F4; border:1px solid #D3E4DA; border-radius:999px; padding:3px 8px;}
+</style>
+
+<div class="d3">
+  <h2>三道菜 · 每一步都要看得见</h2>
+  <p class="subtitle">判断标准只有一条：如果遮住对话框，光看画面和她的动作，你还知道现在做到哪一步吗？</p>
+
+  <div class="dish">
+    <div class="dish-h">
+      <span class="no">01</span>
+      <img class="thumb" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20tomato%20egg%20drop%20soup%20in%20white%20ceramic%20bowl%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+      <div>
+        <div class="nm">番茄蛋花汤</div>
+        <div class="mt">新手 · 10 分钟 · 4 步 · 鸡蛋 / 番茄 / 小葱</div>
+      </div>
+      <span class="hard">难点：蛋液要细，不能一坨</span>
+    </div>
+    <div class="strip">
+      <div class="fr">
+        <div class="fr-h"><span>第 1 步 · 热锅</span><span class="tm">0:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#F1ECE1" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#E9E3D6"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她点火，手掌悬在锅上试温</div>
+        <div class="say2">你说「先中火，别急」</div>
+        <div class="cap">锅底发白、无声响 —— 还没热透</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 2 步 · 倒油</span><span class="tm">0:40</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#F2E4B2"/>
+            <ellipse cx="52" cy="31" rx="8" ry="1.6" fill="#FFFDF4" opacity=".85"/>
+            <path d="M48 21 q4 -5 0 -11" fill="none" stroke="#B7C9BE" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+            <path d="M62 19 q4 -5 0 -11" fill="none" stroke="#B7C9BE" stroke-width="1.3" stroke-linecap="round" opacity=".35"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她拎起油瓶，绕圈淋一圈</div>
+        <div class="say2">你说「一点点就够」</div>
+        <div class="cap">油面起细纹，开始有轻微响声</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 3 步 · 下番茄</span><span class="tm">1:30</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#EBC9B2"/>
+            <circle cx="47" cy="31" r="3.2" fill="#CF7F68"/><circle cx="57" cy="33" r="2.8" fill="#CF7F68"/>
+            <circle cx="69" cy="31" r="3" fill="#C4735D"/><circle cx="76" cy="33.5" r="2.2" fill="#CF7F68"/>
+            <path d="M46 20 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+            <path d="M64 17 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她端着切好的番茄，一块块放进去</div>
+        <div class="say2">你说「轻点放，别溅出来」</div>
+        <div class="cap">番茄边缘变软，汤汁开始泛红</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 4 步 · 淋蛋液</span><span class="tm">3:20</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#E9C4A9"/>
+            <path d="M36 32 q8 -4 14 0 q7 4 14 0 q7 -4 14 0 q6 4 10 1" fill="none" stroke="#F6D98F" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M40 34 q8 -3 13 1 q6 3 13 -1" fill="none" stroke="#FFFDF4" stroke-width="1.4" stroke-linecap="round" opacity=".9"/>
+            <path d="M44 19 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.6" stroke-linecap="round" opacity=".65"/>
+            <path d="M62 16 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她举高碗，蛋液拉成细线落下</div>
+        <div class="say2">你说「慢慢转圈，别搅」</div>
+        <div class="cap">蛋花浮起成絮状 —— 这一步成功与否一眼看得出</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-h">
+      <span class="no">02</span>
+      <img class="thumb" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20tamagoyaki%20rolled%20omelette%20on%20small%20ceramic%20plate%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+      <div>
+        <div class="nm">出汁玉子烧</div>
+        <div class="mt">技巧 · 12 分钟 · 4 步 · 鸡蛋 / 出汁 / 味醂</div>
+      </div>
+      <span class="hard">难点：卷的时候不能散</span>
+    </div>
+    <div class="strip">
+      <div class="fr">
+        <div class="fr-h"><span>第 1 步 · 调蛋液</span><span class="tm">0:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="64" rx="34" ry="4" fill="rgba(60,90,70,.1)"/>
+            <path d="M26 26 Q28 60 60 60 Q92 60 94 26 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="26" rx="34" ry="7" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="26" rx="28" ry="4.8" fill="#F0D18A"/>
+            <ellipse cx="52" cy="24.5" rx="3.4" ry="1.2" fill="#FFFDF4" opacity=".85"/>
+            <path d="M74 20 l8 -12" stroke="#D8CEBD" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她打蛋，筷子画「之」字</div>
+        <div class="say2">你说「别打出太多泡」</div>
+        <div class="cap">蛋液表面还有气泡 —— 她会顺手撇掉</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 2 步 · 第一层</span><span class="tm">2:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="40" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <rect x="16" y="48" width="88" height="9" rx="4" fill="#F0E6D6" stroke="#D9CBB6" stroke-width="1.2"/>
+            <rect x="34" y="35" width="52" height="13" rx="5" fill="#F4D68F" stroke="#E0BE79" stroke-width="1.1"/>
+            <rect x="38" y="38" width="44" height="4" rx="2" fill="#FBEAB9" opacity=".8"/>
+            <path d="M84 44 q10 2 8 12" stroke="#D8CEBD" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她倒薄薄一层，转锅铺平</div>
+        <div class="say2">你说「铺满就行，别厚」</div>
+        <div class="cap">蛋皮边缘先凝固，中间还晃</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 3 步 · 卷起</span><span class="tm">4:30</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="40" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <rect x="16" y="48" width="88" height="9" rx="4" fill="#F0E6D6" stroke="#D9CBB6" stroke-width="1.2"/>
+            <rect x="30" y="34" width="36" height="14" rx="6" fill="#F4D68F" stroke="#E0BE79" stroke-width="1.1"/>
+            <path d="M30 41 q18 6 36 0" fill="none" stroke="#E0BE79" stroke-width="1.1"/>
+            <path d="M64 41 q12 -2 18 -2" fill="none" stroke="#F6DFA6" stroke-width="2" stroke-linecap="round"/>
+            <path d="M84 44 q10 2 8 12" stroke="#D8CEBD" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她用铲子把蛋皮往里推着卷</div>
+        <div class="say2">你说「慢一点，边卷边压」</div>
+        <div class="cap">卷到一半容易破 —— 这里必须她慢下来</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 4 步 · 定型切段</span><span class="tm">7:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="64" rx="40" ry="4" fill="rgba(60,90,70,.1)"/>
+            <rect x="18" y="40" width="84" height="16" rx="7" fill="#F4D68F" stroke="#E0BE79" stroke-width="1.2"/>
+            <path d="M30 40 q3 8 0 16 M44 40 q3 8 0 16 M58 40 q3 8 0 16 M72 40 q3 8 0 16 M86 40 q3 8 0 16" stroke="#FBEAB9" stroke-width="1.4" fill="none"/>
+            <path d="M18 44 q42 10 84 0" fill="none" stroke="#E4C481" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她切段，摆成一小排</div>
+        <div class="say2">你说「切整齐点，好看」</div>
+        <div class="cap">切面露出层层蛋皮 —— 卷成功没成功，看断面就知道</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-h">
+      <span class="no">03</span>
+      <img class="thumb" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Japanese%20oyakodon%20chicken%20and%20egg%20rice%20bowl%20top%20view%20watercolor%20flat%20illustration%20soft%20mint%20cream%20background&image_size=square" alt="">
+      <div>
+        <div class="nm">亲子丼</div>
+        <div class="mt">家常 · 20 分钟 · 4 步 · 鸡腿 / 洋葱 / 鸡蛋 / 米饭</div>
+      </div>
+      <span class="hard">难点：蛋要半熟，汤汁别收干</span>
+    </div>
+    <div class="strip">
+      <div class="fr">
+        <div class="fr-h"><span>第 1 步 · 切洋葱</span><span class="tm">0:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="62" rx="40" ry="4" fill="rgba(60,90,70,.1)"/>
+            <rect x="22" y="34" width="76" height="22" rx="6" fill="#F0E6D6" stroke="#D9CBB6" stroke-width="1.2"/>
+            <ellipse cx="60" cy="45" rx="10" ry="6" fill="none" stroke="#C9A46A" stroke-width="1.5" opacity=".85"/>
+            <ellipse cx="60" cy="45" rx="6" ry="3.6" fill="none" stroke="#C9A46A" stroke-width="1.2" opacity=".7"/>
+            <ellipse cx="60" cy="45" rx="2.4" ry="1.5" fill="#D9B884"/>
+            <path d="M42 40 q5 -2 9 0 M74 42 q5 2 9 0" stroke="#D9CBB6" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她按住洋葱，横向下刀</div>
+        <div class="say2">你说「先切两头再剥皮」</div>
+        <div class="cap">洋葱丝粗细不匀 —— 这会影响软化的速度</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 2 步 · 调汁入锅</span><span class="tm">3:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#C9A46A" opacity=".85"/>
+            <ellipse cx="52" cy="30.5" rx="7" ry="1.4" fill="#E4C894" opacity=".8"/>
+            <path d="M46 19 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她倒出汁、酱油、味醂，晃匀</div>
+        <div class="say2">你说「尝一下咸淡」</div>
+        <div class="cap">汤汁琥珀色，刚好没到锅底 —— 甜咸比在这一步定生死</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 3 步 · 淋蛋液</span><span class="tm">11:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="66" rx="36" ry="4.5" fill="rgba(60,90,70,.12)"/>
+            <path d="M22 32 Q23 62 60 62 Q97 62 98 32 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="38" ry="7.5" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="32" rx="30" ry="5.2" fill="#D9B47E"/>
+            <path d="M38 30 q7 -3 12 0 q6 3 12 0 q6 -3 12 0" fill="none" stroke="#FFF3CC" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M44 34 q7 -2 11 1 q6 2 11 -1" fill="none" stroke="#FFFDF4" stroke-width="1.3" stroke-linecap="round" opacity=".85"/>
+            <path d="M48 19 q4 -6 0 -12" fill="none" stroke="#B7C9BE" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+            <path d="M98 38 q10 0 10 8" fill="none" stroke="#D8CEBD" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她分两次淋蛋液，第一次绕圈</div>
+        <div class="say2">你说「盖上盖子，焖三十秒」</div>
+        <div class="cap">蛋液半凝固就关火 —— 余温会把它焖熟，这是亲子丼的关键</div>
+      </div>
+
+      <div class="fr">
+        <div class="fr-h"><span>第 4 步 · 盖饭</span><span class="tm">14:00</span></div>
+        <div class="art">
+          <svg viewBox="0 0 120 72" style="width:100%;height:58px;display:block;">
+            <ellipse cx="60" cy="64" rx="34" ry="4" fill="rgba(60,90,70,.1)"/>
+            <path d="M26 26 Q28 60 60 60 Q92 60 94 26 Z" fill="#F8F4EA" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="26" rx="34" ry="7" fill="#FCFAF4" stroke="#D8CEBD" stroke-width="1.3"/>
+            <ellipse cx="60" cy="26" rx="29" ry="5" fill="#FBF8F1"/>
+            <ellipse cx="58" cy="26" rx="21" ry="3.6" fill="#D9B47E"/>
+            <path d="M44 25 q6 -2 10 0 q5 2 10 0 q5 -2 9 0" fill="none" stroke="#FFF3CC" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="48" cy="24" r="1.6" fill="#4F6E5F"/><circle cx="66" cy="24.5" r="1.4" fill="#4F6E5F"/>
+          </svg>
+        </div>
+        <div class="act"><i></i>她把锅里的东西整个滑到饭上</div>
+        <div class="say2">你说「小心，别弄塌」</div>
+        <div class="cap">蛋液盖住半边饭，撒一小撮葱花收尾</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.5rem;">「看得见」要做到三层</h3>
+  <div class="layers">
+    <div class="layer">
+      <div class="k">LAYER 1</div>
+      <h4>锅里的变化</h4>
+      <p>内容物、颜色、汤汁高度、蒸汽、气泡。同一口锅要有 4 到 6 个可辨认的状态，切换时给 200ms 的过渡，别硬切。</p>
+      <div class="pills"><span>空锅</span><span>油面</span><span>下料</span><span>沸腾</span><span>收汁</span></div>
+    </div>
+    <div class="layer">
+      <div class="k">LAYER 2</div>
+      <h4>她的动作</h4>
+      <p>每步对应一个 Live2D 动作 + 一个道具位移。原型里示例模型没有做饭动作，先用「拿工具 / 俯身 / 抬手 / 擦汗 / 尝味 / 端盘」的通用动作组合起来。</p>
+      <div class="pills"><span>切</span><span>打蛋</span><span>倒</span><span>翻</span><span>盖</span><span>尝</span><span>盛</span></div>
+    </div>
+    <div class="layer">
+      <div class="k">LAYER 3</div>
+      <h4>她的反应</h4>
+      <p>出错时先给表情和动作，再出台词：锅冒烟 → 后退半步 + 皱眉，0.4 秒后才说“冒烟了”。顺序反了就不像人。</p>
+      <div class="pills"><span>专注</span><span>紧张</span><span>得意</span><span>委屈</span><span>松了口气</span></div>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:1.25rem; font-size:.84rem;">三道菜的排序就是难度曲线：汤练指令、玉子烧练动作配合、亲子丼练时序判断。每道菜的步骤数据会写成同一份结构，后面加菜只是填数据。</p>
+</div>

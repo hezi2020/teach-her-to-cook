@@ -1,0 +1,230 @@
+<style>
+  :root{
+    --paper:#FBFAF5; --paper2:#F4F8F4; --mint:#A8D5C8; --mintsoft:#E9F3ED;
+    --ink:#3E5749; --ink2:#5C7A6B; --muted:#8FA796; --line:#DCE8E0; --warn:#D9A66B;
+  }
+  .ui-wrap{max-width:980px}
+  .stage{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:#EAF2EC; box-shadow:0 16px 36px rgba(90,120,100,.20); font-family:'Hiragino Sans','Yu Gothic UI','Noto Sans SC',system-ui,sans-serif;}
+  .stage img.bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .stage .veil{position:absolute; inset:0; background:linear-gradient(180deg,rgba(18,38,28,.14),rgba(18,38,28,.02) 42%,rgba(18,38,28,.22));}
+  .topbar{position:absolute; top:0; left:0; right:0; height:50px; display:flex; align-items:center; gap:10px; padding:0 16px; background:linear-gradient(180deg,rgba(251,250,245,.92),rgba(251,250,245,0));}
+  .brand{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif SC',serif; font-size:14px; letter-spacing:.2em; color:#2F4437;}
+  .brand small{display:block; font-family:inherit; font-size:8.5px; letter-spacing:.1em; color:#7E9A8B; margin-top:1px;}
+  .top-right{margin-left:auto; display:flex; gap:6px;}
+  .pillbtn{display:flex; align-items:center; gap:5px; height:26px; padding:0 10px; border-radius:999px; background:rgba(251,250,245,.92); border:1px solid #D3E4DA; color:#3E5749; font-size:9.5px; letter-spacing:.04em; box-shadow:0 2px 6px rgba(60,90,75,.08);}
+  .pillbtn svg{width:12px; height:12px;}
+  .char{position:absolute; left:53%; bottom:-2%; transform:translateX(-50%); height:82%; border-radius:10px;
+    mask-image:radial-gradient(ellipse 70% 68% at 50% 46%,#000 56%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 46%,#000 56%,transparent 100%);}
+  .say{position:absolute; left:60%; top:23%; transform:translateX(-50%); max-width:220px; background:rgba(251,250,245,.96); border:1px solid #D3E4DA; border-radius:13px 13px 13px 4px; padding:8px 11px; font-size:10.5px; line-height:1.5; color:#33473D; box-shadow:0 6px 16px rgba(40,70,55,.16);}
+  .say::after{content:''; position:absolute; left:26px; bottom:-6px; width:10px; height:10px; background:rgba(251,250,245,.96); border-right:1px solid #D3E4DA; border-bottom:1px solid #D3E4DA; transform:rotate(45deg);}
+  .hotspot{position:absolute; display:flex; align-items:center; gap:5px; font-size:9px; color:#33473D; background:rgba(251,250,245,.9); border:1px solid rgba(203,221,210,.9); border-radius:999px; padding:4px 9px; box-shadow:0 2px 8px rgba(40,70,55,.12); backdrop-filter:blur(2px);}
+  .hotspot i{width:5px; height:5px; border-radius:50%; background:#8FA383;}
+  .chatcard{position:absolute; left:16px; bottom:16px; width:304px; background:rgba(251,250,245,.97); border:1px solid #D3E4DA; border-radius:15px; padding:11px; box-shadow:0 12px 26px rgba(50,80,65,.18);}
+  .cc-head{display:flex; align-items:center; gap:6px; margin-bottom:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:#7DBFA5; box-shadow:0 0 0 3px rgba(125,191,165,.18);}
+  .cc-head span{font-size:9px; letter-spacing:.1em; color:#5C7A6B;}
+  .cc-head .chev{margin-left:auto; opacity:.55;}
+  .bub{font-size:10px; line-height:1.5; padding:7px 10px; border-radius:11px; max-width:92%;}
+  .bub.in{align-self:flex-start; background:#EFF5F0; color:#3E5749; border-bottom-left-radius:3px;}
+  .bub.out{align-self:flex-end; background:#A8D5C8; color:#2F4437; border-bottom-right-radius:3px;}
+  .msgs{display:flex; flex-direction:column; gap:6px; max-height:96px; overflow:hidden;}
+  .cmds{display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-top:9px;}
+  .cmd{height:25px; display:flex; align-items:center; justify-content:center; font-size:9px; color:#3E5749; background:#F4F9F4; border:1px solid #D3E4DA; border-radius:8px;}
+  .cmd.dim{color:#9BB0A4; background:#FAFCF9;}
+  .input{display:flex; align-items:center; gap:6px; margin-top:8px; height:32px; border:1px solid #DBE8DF; border-radius:999px; padding:0 5px 0 10px; background:#FFFEFB;}
+  .input .ph{flex:1; font-size:9.5px; color:#A2B5A9;}
+  .micbtn{width:22px; height:22px; border-radius:50%; border:1px solid #D3E4DA; display:flex; align-items:center; justify-content:center; background:#F4F9F4;}
+  .sendbtn{width:22px; height:22px; border-radius:50%; background:#A8D5C8; display:flex; align-items:center; justify-content:center;}
+  .guide{position:absolute; right:16px; bottom:16px; width:176px; background:rgba(251,250,245,.97); border:1px solid #D3E4DA; border-radius:14px; padding:11px; box-shadow:0 12px 26px rgba(50,80,65,.16);}
+  .guide .k{font-size:8px; letter-spacing:.16em; color:#8FA796;}
+  .guide .dish{font-size:11.5px; color:#2F4437; margin-top:3px; font-family:'Yu Mincho','Noto Serif SC',serif; letter-spacing:.06em;}
+  .guide hr{border:none; border-top:1px solid #E1ECE5; margin:8px 0;}
+  .step{display:flex; align-items:center; gap:6px; font-size:9px; color:#8FA796; margin-bottom:5px;}
+  .step .ic{width:11px; height:11px; border-radius:50%; border:1px solid #CBDDD2; flex-shrink:0; display:flex; align-items:center; justify-content:center;}
+  .step.done{color:#9BB0A4;}
+  .step.done .ic{background:#A8D5C8; border-color:#A8D5C8;}
+  .step.now{color:#2F4437; font-weight:600;}
+  .step.now .ic{border-color:#7DBFA5; box-shadow:0 0 0 3px rgba(125,191,165,.2);}
+  .meter{margin-top:2px;}
+  .meter .row{display:flex; justify-content:space-between; font-size:8.5px; color:#7E9A8B; margin-bottom:3px;}
+  .bar{height:3px; border-radius:2px; background:#E6EFE9; overflow:hidden;}
+  .bar i{display:block; height:100%; width:62%; background:#A8D5C8; border-radius:2px;}
+  .marker{position:absolute; width:17px; height:17px; border-radius:50%; background:rgba(251,250,245,.94); border:1px solid #A8D5C8; color:#4F6E5F; font-size:9px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(40,70,55,.12);}
+  .legend{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:6px 16px; margin-top:12px; font-size:.78rem; color:var(--text-secondary);}
+  .legend b{color:var(--text-primary); font-weight:600;}
+  .states{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:8px; margin-top:10px;}
+  .st{border-radius:11px; padding:10px; border:1px solid var(--line); background:var(--bg-secondary);}
+  .st .chip{display:inline-flex; align-items:center; gap:4px; font-size:8.5px; letter-spacing:.1em; padding:2px 7px; border-radius:999px; margin-bottom:6px;}
+  .st .line{font-size:9.5px; line-height:1.5; color:#3E5749; background:#F4F9F4; border-radius:8px; padding:6px 8px; min-height:42px;}
+  .st .act{font-size:8.5px; color:#8FA796; margin-top:6px; line-height:1.4;}
+  .tokens{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:10px;}
+  .tok{background:var(--bg-secondary); border:1px solid var(--border); border-radius:11px; padding:10px;}
+  .sw{display:flex; gap:5px; margin-bottom:6px;}
+  .sw span{width:22px; height:22px; border-radius:6px; border:1px solid rgba(0,0,0,.06);}
+  .tok .name{font-size:.78rem; color:var(--text-secondary);}
+  .type-row{display:flex; align-items:baseline; gap:8px; padding:3px 0; border-bottom:1px dashed var(--border);}
+  .type-row:last-child{border-bottom:none;}
+  .type-row .s{color:#3E5749;}
+  .type-row .m{font-size:.7rem; color:var(--text-tertiary); margin-left:auto;}
+  .iconrow{display:flex; gap:14px; align-items:center; color:#3E5749; margin:4px 0 6px;}
+  .iconrow svg{width:16px; height:16px;}
+</style>
+
+<div class="ui-wrap">
+  <h2>主界面细化 · 舞台式</h2>
+  <p class="subtitle">薄荷和纸配色。她把厨房占满，你的一切操作集中在左下角一块卡片里，菜谱与火候常驻右下。</p>
+
+  <div class="stage">
+    <img class="bg" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" alt="">
+    <div class="veil"></div>
+
+    <div class="topbar">
+      <div class="brand">まいにち食堂<small>10月24日 金曜日 · 18:42</small></div>
+      <div class="top-right">
+        <span class="pillbtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M18 20h1"/><path d="M8 9h6M8 13h6"/></svg>
+          菜谱本
+        </span>
+        <span class="pillbtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
+          拿手菜 3
+        </span>
+        <span class="pillbtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <img class="char" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20standing%20full%20body%20plain%20white%20background%20clean%20minimal%20line%20art&image_size=portrait_4_3" alt="Live2D 立绘">
+
+    <div class="say">锅热了。现在放油吗？</div>
+
+    <div class="hotspot" style="left:4%; top:38%;"><i></i>冰箱</div>
+    <div class="hotspot" style="left:25%; bottom:23%;"><i></i>砧板</div>
+    <div class="hotspot" style="right:26%; bottom:31%;"><i></i>锅</div>
+
+    <div class="chatcard">
+      <div class="cc-head">
+        <span class="dot"></span><span>她在等你说话</span>
+        <svg class="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#5C7A6B" stroke-width="1.6" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
+      </div>
+      <div class="msgs">
+        <div class="bub in">锅热了。现在放油吗？</div>
+        <div class="bub out">再等一下，手放锅上方试试温度</div>
+        <div class="bub in">有点烫手了……那现在可以倒了吧？</div>
+      </div>
+      <div class="cmds">
+        <div class="cmd">可以放了</div>
+        <div class="cmd">火小一点</div>
+        <div class="cmd">先打蛋</div>
+        <div class="cmd dim">先切番茄</div>
+        <div class="cmd">等一下</div>
+        <div class="cmd dim">自己做吧</div>
+      </div>
+      <div class="input">
+        <span class="ph">说话或打字…</span>
+        <span class="micbtn">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#5C7A6B" stroke-width="1.7" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+        </span>
+        <span class="sendbtn">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#2F4437" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l15-7-4 15-4-6z"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="guide">
+      <div class="k">RECIPE · 04 STEPS</div>
+      <div class="dish">番茄蛋花汤</div>
+      <hr>
+      <div class="step done"><span class="ic"><svg viewBox="0 0 24 24" width="7" height="7" fill="none" stroke="#2F4437" stroke-width="3.2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>热锅</div>
+      <div class="step now"><span class="ic"></span>放油 · 中火</div>
+      <div class="step"><span class="ic"></span>下番茄</div>
+      <div class="step"><span class="ic"></span>淋蛋液出锅</div>
+      <div class="meter">
+        <div class="row"><span>火候</span><span>中火</span></div>
+        <div class="bar"><i></i></div>
+        <div class="row" style="margin-top:6px; margin-bottom:0;"><span>计时</span><span>02:14</span></div>
+      </div>
+    </div>
+
+    <div class="marker" style="right:12px; top:62px;">1</div>
+    <div class="marker" style="left:13%; top:44%;">2</div>
+    <div class="marker" style="left:44%; top:17%;">3</div>
+    <div class="marker" style="left:12px; bottom:44%;">4</div>
+    <div class="marker" style="right:12px; bottom:44%;">5</div>
+  </div>
+
+  <div class="legend">
+    <div><b>①</b> 顶部栏：店名与日期，右侧三个入口（菜谱本 / 她的拿手菜 / 设置）</div>
+    <div><b>②</b> 场景热点：冰箱、砧板、锅。点一下是“递给她”，不是替她操作</div>
+    <div><b>③</b> 她的台词气泡：她主动开口时浮在头顶，与对话卡里的内容同步</div>
+    <div><b>④</b> 对话卡：状态行 + 对话 + 六格快捷指令 + 输入栏（语音按钮已预留）</div>
+    <div><b>⑤</b> 菜谱指南：步骤进度、火候、计时，常驻不遮挡</div>
+  </div>
+
+  <h3 style="margin-top:1.6rem;">五个界面状态</h3>
+  <p class="subtitle" style="margin-bottom:.5rem;">同一块对话卡，靠状态点和台词气泡切换语气。</p>
+  <div class="states">
+    <div class="st">
+      <span class="chip" style="background:#F4F9F4; color:#5C7A6B;">待机</span>
+      <div class="line">「我在呢，想好了叫我。」</div>
+      <div class="act">场景微动，快捷指令收起，只留输入</div>
+    </div>
+    <div class="st">
+      <span class="chip" style="background:#EAF4EE; color:#4F6E5F;">等你说话</span>
+      <div class="line">「锅热了。现在放油吗？」</div>
+      <div class="act">状态点呼吸，快捷指令展开</div>
+    </div>
+    <div class="st">
+      <span class="chip" style="background:#F1F7F2; color:#3E5749;">执行中</span>
+      <div class="line">「好，我放了……油开始响了。」</div>
+      <div class="act">对话卡半透明，动作进度小圈出现在她头顶</div>
+    </div>
+    <div class="st">
+      <span class="chip" style="background:#FBF4EC; color:#8A6A4A;">出错</span>
+      <div class="line">「啊，冒烟了！是不是火太大了？」</div>
+      <div class="act">场景蒙一层暖橘，快捷指令变成「关火」「再慢一点」</div>
+    </div>
+    <div class="st">
+      <span class="chip" style="background:#FBF7EC; color:#8A7448;">完成</span>
+      <div class="line">「盛出来了。你尝第一口。」</div>
+      <div class="act">菜谱卡翻成结算卡，记录“学会了”</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.6rem;">设计规范</h3>
+  <div class="tokens">
+    <div class="tok">
+      <div class="sw">
+        <span style="background:#FBFAF5"></span><span style="background:#F4F8F4"></span><span style="background:#E9F3ED"></span><span style="background:#A8D5C8"></span><span style="background:#5C7A6B"></span><span style="background:#3E5749"></span>
+      </div>
+      <div class="name">纸白 #FBFAF5 · 雾绿 #F4F8F4<br>薄荷 #A8D5C8 · 墨绿 #3E5749</div>
+    </div>
+    <div class="tok">
+      <div class="type-row"><span class="s" style="font-family:'Yu Mincho','Noto Serif SC',serif; font-size:15px; letter-spacing:.16em;">まいにち食堂</span><span class="m">14 / 明朝 / 0.2em</span></div>
+      <div class="type-row"><span class="s" style="font-size:11px;">番茄蛋花汤</span><span class="m">11 / 500</span></div>
+      <div class="type-row"><span class="s" style="font-size:10px; color:#5C7A6B;">锅热了，现在放油吗？</span><span class="m">10 / 1.5</span></div>
+      <div class="type-row"><span class="s" style="font-size:8.5px; color:#8FA796; letter-spacing:.14em;">RECIPE · 04 STEPS</span><span class="m">8.5 / 0.16em</span></div>
+    </div>
+    <div class="tok">
+      <div class="iconrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M8 9h6M8 13h6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21"/></svg>
+      </div>
+      <div class="name">细线图标：1.6px 描边、圆角端点，只用墨绿，不用填充色块</div>
+    </div>
+    <div class="tok">
+      <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+        <span style="width:44px; height:26px; background:#FBFAF5; border:1px solid #D3E4DA; border-radius:13px;"></span>
+        <span style="width:44px; height:26px; background:#FBFAF5; border:1px solid #D3E4DA; border-radius:8px;"></span>
+        <span style="width:44px; height:26px; background:#FBFAF5; border:1px solid #D3E4DA; border-radius:4px;"></span>
+      </div>
+      <div class="name">圆角：卡片 15 / 按钮与指令 8 / 输入栏 999<br>这两个尺寸对应同一层级的控件</div>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:1.25rem; font-size:.84rem;">下一步会细化的三张：菜谱本抽屉、做菜结算、以及「我也在做」的线下同步双进度界面。</p>
+</div>

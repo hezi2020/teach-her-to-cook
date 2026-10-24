@@ -1,0 +1,271 @@
+<style>
+  .hd{max-width:980px}
+  .ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:10px;margin-top:10px}
+  .op{background:var(--bg-secondary);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .op .art{background:#F1EAD9;line-height:0;border-bottom:1px solid #E4DACA}
+  .op .body{padding:10px 12px 12px}
+  .op .hd2{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+  .op .hd2 b{font-size:.92rem}
+  .op .hd2 .num{width:18px;height:18px;border-radius:50%;background:#EAF4EE;border:1px solid #A8D5C8;color:#4F6E5F;font-size:9px;display:flex;align-items:center;justify-content:center}
+  .op .hd2 .t{font-size:.68rem;letter-spacing:.1em;color:#8FA796;margin-left:auto}
+  .op dl{display:grid;grid-template-columns:34px 1fr;gap:3px 6px;font-size:.75rem;line-height:1.5}
+  .op dt{color:#8FA796}
+  .op dd{color:var(--text-secondary)}
+  .op dd em{font-style:normal;color:#8A6A4A}
+  .chains{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .chain{background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+  .chain .ch{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+  .chain .ch b{font-size:.88rem}
+  .chain .ch span{font-size:.7rem;color:#8FA796;margin-left:auto;letter-spacing:.06em}
+  .chain .nodes{display:flex;flex-wrap:wrap;gap:5px}
+  .chain .node{font-size:.72rem;color:#4F6E5F;background:#F4F9F4;border:1px solid #D3E4DA;border-radius:7px;padding:4px 8px;display:flex;align-items:center;gap:4px}
+  .chain .node i{width:4px;height:4px;border-radius:50%;background:#A8D5C8}
+  .chain .node.hard{background:#FBF4EC;border-color:#E7D3BC;color:#8A6A4A}
+  .chain .node.hard i{background:#D9A66B}
+  .hand{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px;margin-top:10px}
+  .hand .h{background:var(--bg-secondary);border-left:3px solid #A8D5C8;border-radius:0 10px 10px 0;padding:10px 12px}
+  .hand .h b{font-size:.85rem;display:block;margin-bottom:3px}
+  .hand .h p{font-size:.75rem;color:var(--text-secondary);line-height:1.5}
+  .assets{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px}
+  .as{background:var(--bg-secondary);border:1px solid var(--border);border-radius:10px;padding:10px;position:relative}
+  .as .ph{height:64px;border-radius:8px;background:
+      radial-gradient(circle at 50% 40%, #F7F2E6, #EDE4D3);
+      border:1px dashed #CDBFA6;margin-bottom:7px;display:flex;align-items:center;justify-content:center;
+      font-size:.66rem;color:#A79A82;letter-spacing:.08em}
+  .as b{font-size:.78rem;display:block;margin-bottom:2px}
+  .as span{font-size:.7rem;color:var(--text-secondary);line-height:1.4;display:block}
+</style>
+
+<div class="hd">
+  <h2>手把手 · 六个操作怎么玩</h2>
+  <p class="subtitle">每个操作都只有一件事：按住工具，把她的手带到正确的位置与节奏。松开就交还给她。</p>
+
+  <div class="ops">
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect x="26" y="104" width="248" height="38" rx="8" fill="#DCC8AC"/>
+          <rect x="26" y="104" width="248" height="8" rx="4" fill="#E4D3B8"/>
+          <circle cx="128" cy="96" r="26" fill="#C98B6B"/>
+          <circle cx="128" cy="96" r="19" fill="#D99C7E"/>
+          <path d="M128 70 q6 -8 13 -5 -3 7 -13 5z" fill="#8FA383"/>
+          <g stroke="#A8B7A0" stroke-width="1.6" stroke-dasharray="4 5">
+            <path d="M100 84 h56"/><path d="M100 96 h56"/><path d="M100 108 h56"/>
+          </g>
+          <g transform="rotate(28 196 60)">
+            <rect x="192" y="30" width="9" height="52" rx="4.5" fill="#B79A78"/>
+            <path d="M180 78 h34 l-5 22 h-24z" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          </g>
+          <circle cx="206" cy="86" r="11" fill="#A8D5C8" opacity=".25"/>
+          <circle cx="206" cy="86" r="6.5" fill="#A8D5C8" stroke="#FFFDF8" stroke-width="2"/>
+          <g font-family="system-ui" font-size="8" fill="#4F6E5F">
+            <rect x="212" y="120" width="62" height="16" rx="8" fill="#FFFDF8" opacity=".95"/>
+            <text x="221" y="131">8 刀 · 均匀</text>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">1</span><b>切</b><span class="t">CHOP</span></div>
+        <dl>
+          <dt>目标</dt><dd>按住刀，沿虚线来回滑 8 下</dd>
+          <dt>判定</dt><dd>每刀间隔的方差：稳则片匀，乱则碎</dd>
+          <dt>失败</dt><dd>太快 → 切得大小不一，她 <em>皱眉</em></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect y="132" width="300" height="36" fill="#DCC8AC"/>
+          <ellipse cx="176" cy="128" rx="84" ry="9" fill="rgba(120,100,70,.12)"/>
+          <path d="M100 96 Q104 136 176 136 Q248 136 252 96 Z" fill="#FBF7EE"/>
+          <ellipse cx="176" cy="96" rx="76" ry="15" fill="#FFFDF8"/>
+          <ellipse cx="176" cy="96" rx="64" ry="11" fill="#EDE3D0"/>
+          <g transform="rotate(-38 96 60)">
+            <rect x="76" y="30" width="34" height="46" rx="9" fill="#E7DCC6" stroke="#CDB695" stroke-width="1.2"/>
+            <rect x="86" y="14" width="14" height="18" rx="4" fill="#C9B79A"/>
+          </g>
+          <path d="M104 84 q6 16 0 26" stroke="#E3C27A" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".9"/>
+          <rect x="236" y="34" width="14" height="76" rx="7" fill="#FFFDF8"/>
+          <rect x="239" y="62" width="8" height="30" rx="4" fill="#A8D5C8"/>
+          <text x="216" y="122" font-family="system-ui" font-size="7.5" fill="#8B8272">油量</text>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">2</span><b>倒</b><span class="t">POUR</span></div>
+        <dl>
+          <dt>目标</dt><dd>按住瓶身倾斜，让流量停在绿区 1.5 秒</dd>
+          <dt>判定</dt><dd>倾倒时长与角度，决定油量/汁量</dd>
+          <dt>失败</dt><dd>倒多了 → 油腻溅锅，她 <em>吓一跳</em></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect y="132" width="300" height="36" fill="#DCC8AC"/>
+          <ellipse cx="150" cy="128" rx="88" ry="9" fill="rgba(120,100,70,.12)"/>
+          <path d="M74 96 Q78 136 150 136 Q222 136 226 96 Z" fill="#FBF7EE"/>
+          <ellipse cx="150" cy="96" rx="80" ry="16" fill="#FFFDF8"/>
+          <ellipse cx="150" cy="96" rx="66" ry="11" fill="#C98B6B"/>
+          <ellipse cx="150" cy="96" rx="40" ry="7" fill="#D99C7E" opacity=".7"/>
+          <path d="M110 88 a48 14 0 1 1 80 4 a48 14 0 1 1 -56 2" fill="none" stroke="#FFFDF8" stroke-width="2.4" stroke-dasharray="5 6" opacity=".9"/>
+          <g transform="rotate(18 150 96)">
+            <rect x="146" y="46" width="8" height="50" rx="4" fill="#B79A78"/>
+            <path d="M136 92 h28 l-4 18 h-20z" fill="#E4D3B8" stroke="#CDB695" stroke-width="1.2"/>
+          </g>
+          <circle cx="150" cy="34" r="6.5" fill="#A8D5C8" stroke="#FFFDF8" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">3</span><b>搅</b><span class="t">STIR</span></div>
+        <dl>
+          <dt>目标</dt><dd>按住锅铲画圈，转速保持在环里 4 秒</dd>
+          <dt>判定</dt><dd>角速度与圈数：匀速则受热均匀</dd>
+          <dt>失败</dt><dd>太快 → 溅出锅边；太慢 → <em>粘锅</em></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect y="132" width="300" height="36" fill="#DCC8AC"/>
+          <path d="M56 110 h150 a14 14 0 0 0 0 -28 h-140" fill="#F4EEDF" stroke="#CDB695" stroke-width="1.2"/>
+          <rect x="206" y="108" width="62" height="9" rx="4.5" fill="#B79A78"/>
+          <ellipse cx="126" cy="94" rx="34" ry="9" fill="#C98B6B"/>
+          <ellipse cx="126" cy="91" rx="30" ry="7" fill="#D99C7E"/>
+          <path d="M104 88 q14 -34 22 -42" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-dasharray="4 5"/>
+          <path d="M118 44 l8 2 -4 8" fill="#A8D5C8"/>
+          <rect x="34" y="30" width="96" height="12" rx="6" fill="#FFFDF8"/>
+          <rect x="100" y="30" width="30" height="12" rx="6" fill="#A8D5C8"/>
+          <text x="34" y="56" font-family="system-ui" font-size="7.5" fill="#8B8272">时机</text>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">4</span><b>翻</b><span class="t">FLIP</span></div>
+        <dl>
+          <dt>目标</dt><dd>指针进绿区的瞬间向上划</dd>
+          <dt>判定</dt><dd>与绿区中心的毫秒差</dd>
+          <dt>失败</dt><dd>早了 → 散；晚了 → <em>焦</em></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect y="132" width="300" height="36" fill="#DCC8AC"/>
+          <ellipse cx="170" cy="128" rx="86" ry="9" fill="rgba(120,100,70,.12)"/>
+          <path d="M96 96 Q100 136 170 136 Q240 136 244 96 Z" fill="#FBF7EE"/>
+          <ellipse cx="170" cy="96" rx="78" ry="16" fill="#FFFDF8"/>
+          <ellipse cx="170" cy="96" rx="64" ry="11" fill="#E9C4A9"/>
+          <path d="M70 62 q0 16 20 16 q20 0 20 -16z" fill="#FFFDF8" stroke="#CDB695" stroke-width="1.2"/>
+          <ellipse cx="90" cy="62" rx="20" ry="5" fill="#F0D18A"/>
+          <path d="M100 70 q10 8 16 16" fill="none" stroke="#F0D18A" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M120 84 q22 -12 38 -4 q22 10 44 -2" fill="none" stroke="#F7DFA6" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="4 4"/>
+          <path d="M126 88 a54 16 0 0 1 70 6" fill="none" stroke="#A8D5C8" stroke-width="2" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">5</span><b>淋</b><span class="t">DRIZZLE</span></div>
+        <dl>
+          <dt>目标</dt><dd>按住蛋液碗，沿螺旋虚线匀速转两圈</dd>
+          <dt>判定</dt><dd>轨迹与虚线的平均偏差</dd>
+          <dt>失败</dt><dd>走偏 → 蛋花一坨，她 <em>小声叹气</em></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="art">
+        <svg viewBox="0 0 300 168" width="100%" style="display:block">
+          <rect width="300" height="168" fill="#F1EAD9"/>
+          <rect y="132" width="300" height="36" fill="#DCC8AC"/>
+          <ellipse cx="210" cy="122" rx="52" ry="10" fill="#FFFDF8" stroke="#CDB695" stroke-width="1.2"/>
+          <ellipse cx="210" cy="119" rx="42" ry="7" fill="#F1E6D2"/>
+          <path d="M72 96 Q76 134 132 134 Q188 134 192 96 Z" fill="#FBF7EE"/>
+          <ellipse cx="132" cy="96" rx="60" ry="14" fill="#FFFDF8"/>
+          <ellipse cx="132" cy="96" rx="48" ry="9" fill="#E9C4A9"/>
+          <path d="M96 82 q26 -22 74 -4" fill="none" stroke="#A8D5C8" stroke-width="2.4" stroke-dasharray="5 5"/>
+          <path d="M168 74 l8 4 -6 8" fill="#A8D5C8"/>
+          <circle cx="168" cy="78" r="6" fill="#A8D5C8" stroke="#FFFDF8" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="hd2"><span class="num">6</span><b>盛</b><span class="t">PLATE</span></div>
+        <dl>
+          <dt>目标</dt><dd>把锅拖到盘子上方，松手前减速</dd>
+          <dt>判定</dt><dd>落点偏移 + 松手时的速度</dd>
+          <dt>失败</dt><dd>甩过去 → 摆盘塌掉</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.5rem;">她的手，什么时候归你</h3>
+  <div class="hand">
+    <div class="h"><b>不碰她</b><p>她按自己的手感继续做，手感条缓慢下降。降到低处会开始犯小错：切歪、倒多、火没调。</p></div>
+    <div class="h"><b>按住工具</b><p>控制权交给你，她的手贴在你的光标上，动作完全跟手。这一段的判定只看你的操作。</p></div>
+    <div class="h"><b>松开之后</b><p>她把刚才的节奏记下来，接着用你的速度继续做完这一步。教得好，她后面会主动照做。</p></div>
+  </div>
+
+  <h3 style="margin-top:1.5rem;">三道菜的操作链</h3>
+  <div class="chains">
+    <div class="chain">
+      <div class="ch"><b>番茄蛋花汤</b><span>6 个操作 · 约 50 秒</span></div>
+      <div class="nodes">
+        <span class="node"><i></i>切番茄 ×8</span>
+        <span class="node"><i></i>打蛋 · 搅</span>
+        <span class="node"><i></i>倒油 · 控量</span>
+        <span class="node hard"><i></i>下番茄 · 翻炒</span>
+        <span class="node hard"><i></i>淋蛋液 · 螺旋</span>
+        <span class="node"><i></i>盛碗</span>
+      </div>
+    </div>
+    <div class="chain">
+      <div class="ch"><b>出汁玉子烧</b><span>7 个操作 · 约 65 秒</span></div>
+      <div class="nodes">
+        <span class="node"><i></i>打蛋 · 搅</span>
+        <span class="node"><i></i>倒第一层 · 少量</span>
+        <span class="node hard"><i></i>卷起 · 拖拽</span>
+        <span class="node"><i></i>再倒一层</span>
+        <span class="node hard"><i></i>定型 · 按压</span>
+        <span class="node"><i></i>切段 ×5</span>
+        <span class="node"><i></i>摆盘</span>
+      </div>
+    </div>
+    <div class="chain">
+      <div class="ch"><b>亲子丼</b><span>7 个操作 · 约 60 秒</span></div>
+      <div class="nodes">
+        <span class="node"><i></i>切洋葱 ×6</span>
+        <span class="node"><i></i>倒汁 ×2</span>
+        <span class="node hard"><i></i>炒洋葱 · 搅</span>
+        <span class="node"><i></i>淋蛋液 · 第一次</span>
+        <span class="node hard"><i></i>淋蛋液 · 第二次</span>
+        <span class="node"><i></i>盖饭 · 拖拽</span>
+        <span class="node"><i></i>撒葱花 · 点撒</span>
+      </div>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top:.6rem;font-size:.82rem;">橙色节点是容易翻车的地方 —— 也是她的表情变化最明显的地方。</p>
+
+  <h3 style="margin-top:1.5rem;">需要你生成的素材</h3>
+  <p class="subtitle" style="margin-bottom:.4rem;">下面是主素材槽位。完整清单（含每一项的提示词）写在 <b>docs/asset-list.md</b> 里。</p>
+  <div class="assets">
+    <div class="as"><div class="ph">1920×1080</div><b>厨房背景</b><span>低饱和、扁平、傍晚暖光</span></div>
+    <div class="as"><div class="ph">1024·透明</div><b>锅体三层</b><span>锅身 / 锅沿 / 空锅内胆</span></div>
+    <div class="as"><div class="ph">1024·透明</div><b>锅内状态 ×6</b><span>每道菜一组，俯视对齐</span></div>
+    <div class="as"><div class="ph">512·透明</div><b>工具 ×9</b><span>锅铲/木铲/油瓶/蛋碗/刀/砧板/盐罐/盘/碗</span></div>
+    <div class="as"><div class="ph">256·透明</div><b>食材 ×12</b><span>整颗 / 切好 / 成品三态</span></div>
+    <div class="as"><div class="ph">256·透明</div><b>判定印章 ×3</b><span>完美 / 还行 / 糟糕</span></div>
+  </div>
+</div>

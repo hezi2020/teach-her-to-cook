@@ -1,0 +1,123 @@
+<style>
+  .loop-wrap { max-width: 900px; }
+  .loop { display:flex; align-items:stretch; gap:6px; flex-wrap:wrap; margin-bottom:1.25rem; }
+  .node { flex:1 1 120px; background:var(--bg-secondary); border:1px solid #D3E4DA; border-radius:12px; padding:10px 11px; min-width:118px; }
+  .node .n { font-size:.65rem; letter-spacing:.12em; color:#8FA796; margin-bottom:4px; }
+  .node .t { font-size:.9rem; font-weight:600; color:#3E5749; margin-bottom:3px; }
+  .node .d { font-size:.74rem; color:#5C7A6B; line-height:1.4; }
+  .node.accent { background:#EAF4EE; border-color:#A8D5C8; }
+  .node.warn { background:#FBF4EC; border-color:#E7D3BC; }
+  .node.warn .t { color:#8A6A4A; }
+  .node.warn .d { color:#9A7C5C; }
+  .sep { align-self:center; color:#B3C4B9; font-size:1rem; }
+  .rules { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-bottom:1.25rem; }
+  .rule { background:var(--bg-secondary); border-left:3px solid #A8D5C8; border-radius:0 10px 10px 0; padding:10px 12px; }
+  .rule h4 { font-size:.85rem; margin-bottom:3px; }
+  .rule p { font-size:.78rem; color:var(--text-secondary); line-height:1.45; }
+</style>
+
+<h2>核心循环：你在旁边，只能动嘴</h2>
+<p class="subtitle">她站在灶台前，你坐在旁边。每一步都由她动手，你负责说对的话。</p>
+
+<div class="loop-wrap">
+  <div class="loop">
+    <div class="node">
+      <div class="n">01</div>
+      <div class="t">选菜</div>
+      <div class="d">菜谱本里挑一道，她看看食材够不够</div>
+    </div>
+    <div class="sep">→</div>
+    <div class="node">
+      <div class="n">02</div>
+      <div class="t">备菜问答</div>
+      <div class="d">她会先问：“先切番茄还是先打蛋？”</div>
+    </div>
+    <div class="sep">→</div>
+    <div class="node accent">
+      <div class="n">03</div>
+      <div class="t">你下指令</div>
+      <div class="d">“开中火”“再等一分钟”“翻面”</div>
+    </div>
+    <div class="sep">→</div>
+    <div class="node warn">
+      <div class="n">04</div>
+      <div class="t">她出错 · 你纠正</div>
+      <div class="d">火大了、顺序反了、忘了放盐</div>
+    </div>
+    <div class="sep">→</div>
+    <div class="node">
+      <div class="n">05</div>
+      <div class="t">出锅同吃</div>
+      <div class="d">一起尝，她会给自己的手艺打分</div>
+    </div>
+    <div class="sep">↺</div>
+    <div class="node">
+      <div class="n">06</div>
+      <div class="t">解锁新菜</div>
+      <div class="d">学会的菜进她的「拿手菜」，难度上升</div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:.6rem;">三条不可破的规则</h3>
+  <div class="rules">
+    <div class="rule">
+      <h4>你只能说话和递东西</h4>
+      <p>不能替她关火、不能替她下锅。点击场景里的锅或砧板，只是“把东西递给她”，动作仍由她完成。这条限制就是整个玩法的张力来源。</p>
+    </div>
+    <div class="rule">
+      <h4>她犯错要有理由</h4>
+      <p>不是随机翻车：她只会在你没交代清楚的地方出错，比如你没说火候，她就用大火。纠正过一次，同类错误不再犯。</p>
+    </div>
+    <div class="rule">
+      <h4>她记得你说过的话</h4>
+      <p>“你上次说太咸”“你说过不喜欢香菜”。原型里用关键词记忆模拟，让前后的对话真的接得上。</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:.6rem;">主界面（舞台式构图）</h3>
+  <div style="border-radius:16px; overflow:hidden; position:relative; aspect-ratio:16/9; box-shadow:0 12px 28px rgba(110,145,128,.18);">
+    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20small%20Japanese%20home%20kitchen%20interior%20watercolor%20flat%20illustration%20soft%20mint%20green%20warm%20cream%20evening%20light%20wooden%20counter%20hanging%20pots%20no%20people&image_size=landscape_16_9" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" alt="">
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,40,30,.12), rgba(20,40,30,.03) 45%, rgba(20,40,30,.2));"></div>
+
+    <div style="position:absolute; top:0; left:0; right:0; display:flex; align-items:center; padding:10px 13px; background:linear-gradient(180deg, rgba(251,250,245,.9), rgba(251,250,245,0));">
+      <span style="font-size:11px; color:#3E5749; letter-spacing:.14em;">まいにち食堂</span>
+      <span style="margin-left:auto; display:flex; gap:6px;">
+        <span style="font-size:9px; color:#3E5749; background:rgba(251,250,245,.9); border-radius:999px; padding:3px 9px; border:1px solid #D3E4DA;">菜谱本</span>
+        <span style="font-size:9px; color:#3E5749; background:rgba(251,250,245,.9); border-radius:999px; padding:3px 9px; border:1px solid #D3E4DA;">她的拿手菜 3</span>
+      </span>
+    </div>
+
+    <img style="position:absolute; left:46%; bottom:0; transform:translateX(-50%); height:80%; border-radius:10px; mask-image:radial-gradient(ellipse 70% 68% at 50% 46%, #000 58%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 46%, #000 58%, transparent 100%);" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20Japanese%20cooking%20assistant%20girl%20flat%20anime%20illustration%20soft%20mint%20green%20cream%20apron%20short%20dark%20hair%20gentle%20smile%20standing%20full%20body%20plain%20white%20background%20clean%20minimal%20line%20art&image_size=portrait_4_3" alt="她">
+
+    <div style="position:absolute; left:14px; bottom:14px; width:290px; background:rgba(251,250,245,.96); border:1px solid #D3E4DA; border-radius:14px; padding:11px; box-shadow:0 8px 20px rgba(60,90,75,.16);">
+      <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#A8D5C8;"></span>
+        <span style="font-size:9px; color:#5C7A6B; letter-spacing:.1em;">她在等你说话</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:7px;">
+        <div style="align-self:flex-start; background:#EFF5F0; color:#3E5749; font-size:10px; padding:7px 10px; border-radius:11px 11px 11px 3px; max-width:90%;">锅热了。现在放油吗？</div>
+        <div style="align-self:flex-end; background:#A8D5C8; color:#2F4437; font-size:10px; padding:7px 10px; border-radius:11px 11px 3px 11px;">再等一下，手放锅上方试试温度</div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:9px;">
+        <span style="font-size:9px; color:#3E5749; background:#F1F7F2; border:1px solid #D3E4DA; border-radius:8px; padding:5px 8px; text-align:center;">可以放了</span>
+        <span style="font-size:9px; color:#3E5749; background:#F1F7F2; border:1px solid #D3E4DA; border-radius:8px; padding:5px 8px; text-align:center;">火小一点</span>
+        <span style="font-size:9px; color:#3E5749; background:#F1F7F2; border:1px solid #D3E4DA; border-radius:8px; padding:5px 8px; text-align:center;">先打蛋</span>
+        <span style="font-size:9px; color:#3E5749; background:#F1F7F2; border:1px solid #D3E4DA; border-radius:8px; padding:5px 8px; text-align:center;">自己做吧</span>
+      </div>
+      <div style="margin-top:7px; border:1px solid #DBE8DF; border-radius:999px; padding:6px 10px; font-size:9px; color:#A2B5A9;">说话或打字…</div>
+    </div>
+
+    <div style="position:absolute; right:12px; top:50%; transform:translateY(-50%); width:150px; background:rgba(251,250,245,.96); border:1px solid #D3E4DA; border-radius:12px; padding:11px; box-shadow:0 8px 20px rgba(60,90,75,.14);">
+      <div style="font-size:8px; color:#8FA796; letter-spacing:.14em;">菜谱指南</div>
+      <div style="font-size:10px; color:#3E5749; margin-top:3px;">番茄蛋花汤</div>
+      <div style="height:1px; background:#E1ECE5; margin:7px 0;"></div>
+      <div style="font-size:8px; color:#8FA796;">第 2 / 4 步</div>
+      <div style="font-size:9px; color:#3E5749; margin-top:4px; line-height:1.4;">热锅 → <b>放油</b> → 下番茄 → 淋蛋</div>
+      <div style="height:1px; background:#E1ECE5; margin:7px 0;"></div>
+      <div style="display:flex; justify-content:space-between; font-size:8px; color:#7E9A8B;"><span>火候</span><span>中火</span></div>
+      <div style="display:flex; justify-content:space-between; font-size:8px; color:#7E9A8B; margin-top:3px;"><span>计时</span><span>02:14</span></div>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:.9rem; font-size:.85rem;">线下同步：同一个菜谱也能开「我也在做」模式 —— 你照着同一份步骤在现实厨房做，她会隔一会儿问你一句“你那边到第几步了”。</p>
+</div>
